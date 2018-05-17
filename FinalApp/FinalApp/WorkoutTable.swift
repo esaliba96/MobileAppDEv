@@ -1,0 +1,59 @@
+//
+//  WorkoutTable.swift
+//  FinalApp
+//
+//  Created by Elie Saliba on 5/16/18.
+//  Copyright © 2018 Elie Saliba. All rights reserved.
+//
+
+//
+//  ViewController.swift
+//  Lab5
+//
+//  Created by Local Account 436-02 on 4/24/18.
+//  Copyright © 2018 Local Account 436-02. All rights reserved.
+//
+
+import UIKit
+import FirebaseDatabase
+
+class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var tableView: UITableView!
+    var myWorkouts = [Workout]()
+    var workoutRef : DatabaseReference?
+
+    @IBAction func addButton(_ sender: Any) {
+        performSegue(withIdentifier: "addWorkout", sender: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Database.database().isPersistenceEnabled = true
+        workoutRef = Database.database().reference(withPath: "workouts")
+        tableView.delegate = self
+        tableView.dataSource = self
+        workoutRef?.keepSynced(true)
+        let newWorkout = Workout(name: "bench press", reps: "5", sets: "5", maxWeight: "225")
+        let newRef = workoutRef?.child(newWorkout.name)
+        newRef?.setValue(newWorkout.toAnyObject())
+        
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutSched", for: indexPath) as! WorkoutTVCell
+        
+        return cell
+        
+    }
+ 
+}
+
+
