@@ -95,4 +95,14 @@ extension ViewController: JTAppleCalendarViewDelegate {
         return cell
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       let cell = self.calendarView.indexPathsForSelectedItems![0]
+ 
+        let text = cell.item
+        print(text, " hello")
+        
+        
+    }
+    
 }
