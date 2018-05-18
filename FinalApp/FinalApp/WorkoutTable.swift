@@ -33,10 +33,6 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
         workoutRef?.keepSynced(true)
-        let newWorkout = Workout(name: "bench press", reps: "5", sets: "5", maxWeight: "225")
-        let newRef = workoutRef?.child(newWorkout.name)
-        newRef?.setValue(newWorkout.toAnyObject())
-        
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +49,24 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell
         
     }
+    
+    @IBAction func unwindFromAdd(segue:UIStoryboardSegue) {
+        tableView.reloadData()
+    }
+    
+    @IBAction func unwindFromCancel(segue:UIStoryboardSegue){}
  
+    func addWorkout(newWorkout : Workout) {
+        myWorkouts.append(newWorkout)
+        tableView.reloadData()
+        addToFirebase(newWorkout: newWorkout)
+    }
+    
+    func addToFirebase(newWorkout: Workout) {
+        let newRef = workoutRef?.child(newWorkout.name)
+        newRef?.setValue(newWorkout.toAnyObject())
+    }
+    
 }
 
 

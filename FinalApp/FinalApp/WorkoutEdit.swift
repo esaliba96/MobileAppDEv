@@ -41,7 +41,7 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate {
         var weightoadd: String!
         if segue.identifier == "unwindFromAdd" {
             
-            let destVC = segue.destination as? ViewController
+            let destVC = segue.destination as? WorkoutTable
             if dataFromTable != nil {
                 dataFromTable?.name = nameTF.text!
                 dataFromTable?.reps = repsTF.text!
@@ -59,7 +59,7 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate {
                     setstoadd = setsTF.text!
                 }
                 let newWorkout = Workout(name: nameTF.text!, reps: repstoadd, sets: setstoadd, maxWeight: weightoadd)
-              //  destVC?.addWorkout(newWorkout: newWorkout)
+                destVC?.addWorkout(newWorkout: newWorkout)
             }
         }
     }
