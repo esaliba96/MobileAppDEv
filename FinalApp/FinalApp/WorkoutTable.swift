@@ -28,7 +28,6 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // Database.database().isPersistenceEnabled = true
         workoutRef = Database.database().reference(withPath: "workouts")
         tableView.delegate = self
         tableView.dataSource = self

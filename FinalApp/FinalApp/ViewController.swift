@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     let formatter = DateFormatter()
@@ -18,10 +19,12 @@ class ViewController: UIViewController {
     let outsideMonthColor = UIColor.lightGray
     let selectedMonthColor = UIColor.black
     let monthColor = UIColor.black
+    var dates = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        Database.database().isPersistenceEnabled = true
         
         calendarView.visibleDates { (visibleDate) in
             self.setupViewsOfCalendar(from: visibleDate)
@@ -89,7 +92,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
         
         cell.dataLabel.text = cellState.text
-        
+        dates.append(cellState.text)
         handleCellTextColor(view: cell, cellState: cellState)
         
         return cell
@@ -98,9 +101,8 @@ extension ViewController: JTAppleCalendarViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        let cell = self.calendarView.indexPathsForSelectedItems![0]
- 
-        let text = cell.item
-        print(text, " hello")
+        
+        print(dates[(cell as NSIndexPath).row], " hello")
         
         
     }

@@ -19,6 +19,12 @@
 		418A4F8520AB4F7000D8E4A6 /* FinalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418A4F8420AB4F7000D8E4A6 /* FinalAppTests.swift */; };
 		418A4F9020AB4F7000D8E4A6 /* FinalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418A4F8F20AB4F7000D8E4A6 /* FinalAppUITests.swift */; };
 		418A4F9E20AB55E700D8E4A6 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418A4F9D20AB55E700D8E4A6 /* CustomCell.swift */; };
+		4195EAD920B493DF00841D44 /* FoodTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EAD820B493DF00841D44 /* FoodTable.swift */; };
+		4195EADB20B4940200841D44 /* FoodIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EADA20B4940200841D44 /* FoodIDService.swift */; };
+		4195EADD20B496E000841D44 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EADC20B496E000841D44 /* Food.swift */; };
+		4195EADF20B497A600841D44 /* FoodTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EADE20B497A600841D44 /* FoodTVCell.swift */; };
+		4195EAE120B4993400841D44 /* NewFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EAE020B4993400841D44 /* NewFood.swift */; };
+		4195EAE320B4A4C500841D44 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EAE220B4A4C500841D44 /* FoodService.swift */; };
 		41CA982620AE38D800E5D523 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41CA982520AE38D800E5D523 /* GoogleService-Info.plist */; };
 		41CA982820AE401100E5D523 /* WorkoutEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CA982720AE401100E5D523 /* WorkoutEdit.swift */; };
 		6ED404C5D818908B3AF5319B /* Pods_FinalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E865117C5970B7E1D9E01772 /* Pods_FinalApp.framework */; };
@@ -61,6 +67,12 @@
 		418A4F8F20AB4F7000D8E4A6 /* FinalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalAppUITests.swift; sourceTree = "<group>"; };
 		418A4F9120AB4F7000D8E4A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		418A4F9D20AB55E700D8E4A6 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		4195EAD820B493DF00841D44 /* FoodTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTable.swift; sourceTree = "<group>"; };
+		4195EADA20B4940200841D44 /* FoodIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodIDService.swift; sourceTree = "<group>"; };
+		4195EADC20B496E000841D44 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		4195EADE20B497A600841D44 /* FoodTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTVCell.swift; sourceTree = "<group>"; };
+		4195EAE020B4993400841D44 /* NewFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFood.swift; sourceTree = "<group>"; };
+		4195EAE220B4A4C500841D44 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		41CA982520AE38D800E5D523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41CA982720AE401100E5D523 /* WorkoutEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEdit.swift; sourceTree = "<group>"; };
 		5291C7DF2624738522F58BD9 /* Pods-FinalAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalAppTests/Pods-FinalAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,8 +154,14 @@
 				418A4F6F20AB4F7000D8E4A6 /* AppDelegate.swift */,
 				418A4F7120AB4F7000D8E4A6 /* ViewController.swift */,
 				418A4F7320AB4F7000D8E4A6 /* Main.storyboard */,
+				4195EAE020B4993400841D44 /* NewFood.swift */,
+				4195EAE220B4A4C500841D44 /* FoodService.swift */,
+				4195EAD820B493DF00841D44 /* FoodTable.swift */,
+				4195EADE20B497A600841D44 /* FoodTVCell.swift */,
+				4195EADC20B496E000841D44 /* Food.swift */,
 				41CA982720AE401100E5D523 /* WorkoutEdit.swift */,
 				4156435420ACC13100C847A4 /* WorkoutTable.swift */,
+				4195EADA20B4940200841D44 /* FoodIDService.swift */,
 				4156435620ACC1C600C847A4 /* WorkoutTVCell.swift */,
 				418A4F7620AB4F7000D8E4A6 /* Assets.xcassets */,
 				4156435820ACC29200C847A4 /* Workout.swift */,
@@ -407,9 +425,15 @@
 			files = (
 				4156435520ACC13100C847A4 /* WorkoutTable.swift in Sources */,
 				418A4F7220AB4F7000D8E4A6 /* ViewController.swift in Sources */,
+				4195EAE120B4993400841D44 /* NewFood.swift in Sources */,
+				4195EAD920B493DF00841D44 /* FoodTable.swift in Sources */,
 				418A4F9E20AB55E700D8E4A6 /* CustomCell.swift in Sources */,
+				4195EAE320B4A4C500841D44 /* FoodService.swift in Sources */,
+				4195EADB20B4940200841D44 /* FoodIDService.swift in Sources */,
 				418A4F7020AB4F7000D8E4A6 /* AppDelegate.swift in Sources */,
 				41CA982820AE401100E5D523 /* WorkoutEdit.swift in Sources */,
+				4195EADD20B496E000841D44 /* Food.swift in Sources */,
+				4195EADF20B497A600841D44 /* FoodTVCell.swift in Sources */,
 				4156435720ACC1C600C847A4 /* WorkoutTVCell.swift in Sources */,
 				4156435920ACC29200C847A4 /* Workout.swift in Sources */,
 			);
