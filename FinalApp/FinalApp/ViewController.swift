@@ -100,11 +100,12 @@ extension ViewController: JTAppleCalendarViewDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       let cell = self.calendarView.indexPathsForSelectedItems![0]
-        
-        print(dates[(cell as NSIndexPath).row], " hello")
-        
-        
-    }
+        let cell = self.calendarView.indexPathsForSelectedItems![0]
+        if let tabbarController = segue.destination as? UITabBarController {
+            let postVC = tabbarController.viewControllers?.first as? WorkoutTable
+            
+            postVC?.currentDate = dates[(cell as NSIndexPath).row]
     
+    }
+    }
 }

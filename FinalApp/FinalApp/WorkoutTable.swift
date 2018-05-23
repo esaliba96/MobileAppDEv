@@ -21,7 +21,8 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var tableView: UITableView!
     var myWorkouts = [Workout]()
     var workoutRef : DatabaseReference?
-
+    var currentDate : String?
+    
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "addWorkout", sender: nil)
     }
@@ -35,7 +36,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return myWorkouts.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,7 +63,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func addToFirebase(newWorkout: Workout) {
-        let newRef = workoutRef?.child(newWorkout.name)
+        let newRef = workoutRef?.child(currentDate!).child(newWorkout.name)
         newRef?.setValue(newWorkout.toAnyObject())
     }
     
