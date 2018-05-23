@@ -28,7 +28,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YEAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Npy-hX-Ydr">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONTH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVC-bd-Jb5">
@@ -91,7 +91,7 @@
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YKi-P6-Nr2" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
                                         <rect key="frame" x="0.0" y="70" width="375" height="277"/>
-                                        <color key="backgroundColor" red="0.61037268430321401" green="0.58966466566655484" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.66587140206656059" green="0.66666668653488159" blue="0.61675441113693363" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mhi-Hk-hXL">
                                             <size key="itemSize" width="123" height="109"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -144,7 +144,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.53032015903891261" green="0.13106687540011513" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.61393830794864768" green="0.66666668653488159" blue="0.58250087450206245" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="owc-Ja-pI3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2Mp-Z3-CbF"/>
                             <constraint firstItem="owc-Ja-pI3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HXJ-RU-AYw"/>
@@ -166,7 +166,7 @@
         <!--Item 2-->
         <scene sceneID="BkF-lL-dKP">
             <objects>
-                <viewController id="DOe-7w-vFt" customClass="FoodTable" sceneMemberID="viewController">
+                <viewController id="DOe-7w-vFt" customClass="FoodTable" customModule="FinalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lE0-Js-G00">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +210,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add Food"/>
                                 <connections>
-                                    <segue destination="ner-qi-tOC" kind="modal" id="lOT-9Y-y8m"/>
+                                    <action selector="addNewFood:" destination="DOe-7w-vFt" eventType="touchUpInside" id="mdm-SN-L7x"/>
+                                    <segue destination="ner-qi-tOC" kind="modal" identifier="addNewFood" id="lOT-9Y-y8m"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -258,7 +259,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="search"/>
                                 <connections>
-                                    <action selector="search:" destination="ner-qi-tOC" eventType="touchUpInside" id="hsi-vg-GPf"/>
+                                    <action selector="search:" destination="ner-qi-tOC" eventType="touchUpInside" id="ZuR-FW-kdL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgJ-4n-4cb">
@@ -289,14 +290,13 @@
                         <viewLayoutGuide key="safeArea" id="JNj-T3-8Jr"/>
                     </view>
                     <connections>
-                        <outlet property="search" destination="xjd-i5-idv" id="Tbh-UI-yvY"/>
                         <outlet property="searchInput" destination="wxe-6g-Apt" id="jXL-dv-Cn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNr-j7-8VX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mjJ-9F-gIy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4040.8000000000002" y="446.62668665667172"/>
+            <point key="canvasLocation" x="4041" y="447"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="zKL-eL-iFB">

@@ -21,6 +21,7 @@ class NewFood: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func search(_ sender: UIButton) {
+        print("here")
         let session = URLSession(configuration: URLSessionConfiguration.default)
         
         let request = URLRequest(url: URL(string: apiFoodID)!)
@@ -34,7 +35,7 @@ class NewFood: UIViewController, UITextFieldDelegate {
                     let foodID = try decoder.decode(FoodIDService.self, from: data)
                     
                     self.foodID = foodID
-                    
+                    self.getFoodName()
                     DispatchQueue.main.async {
                     }
                     
@@ -42,38 +43,42 @@ class NewFood: UIViewController, UITextFieldDelegate {
                     print("Exception on Decode: \(error)")
                 }
             }
-            
-            let session = URLSession(configuration: URLSessionConfiguration.default)
-            let request = URLRequest(url: URL(string: self.apiFood)!)
-            
-            let task1: URLSessionDataTask = session.dataTask(with: request)
-            { (receivedData, response, error) -> Void in
-                
-                if let data = receivedData {
-                    do {
-                        let decoder = JSONDecoder()
-                        let food = try decoder.decode(FoodService.self, from: data)
-                        
-                        self.food = food
-                        
-                        DispatchQueue.main.async {
-                        }
-                        
-                    } catch {
-                        print("Exception on Decode: \(error)")
-                    }
-                }
-            }
-            task1.resume()
+            print(self.foodID?.hits[0]._id ?? 0)
         }
         task.resume()
+    }
+    
+    func getFoodName() {
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let request = URLRequest(url: URL(string: self.apiFood)!)
+
+        let task1: URLSessionDataTask = session.dataTask(with: request)
+        { (receivedData, response, error) -> Void in
+
+            if let data = receivedData {
+                do {
+                    let decoder = JSONDecoder()
+                    let food = try decoder.decode(FoodService.self, from: data)
+
+                    self.food = food
+                    let newFood = Food(food: self.food!)
+                    print(newFood.name, newFood.calories)
+                    DispatchQueue.main.async {
+                    }
+
+                } catch {
+                    print("Exception on Decode: \(error)")
+                }
+            }
+        }
+        task1.resume()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindFromAdd" {
             let destVC = segue.destination as? FoodTable
             let newFood = Food(food: food!)
-
+            print(newFood.calories)
             destVC?.addFood(newFood: newFood)
         }
     }

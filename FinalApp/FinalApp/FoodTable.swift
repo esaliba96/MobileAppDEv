@@ -15,6 +15,10 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBAction func addNewFood(_ sender: UIButton) {
+        performSegue(withIdentifier: "addNewFood", sender: nil)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

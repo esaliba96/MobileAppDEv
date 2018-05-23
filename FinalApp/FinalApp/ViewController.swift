@@ -16,10 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var month: UILabel!
-    let outsideMonthColor = UIColor.lightGray
+    let outsideMonthColor = UIColor.darkGray
     let selectedMonthColor = UIColor.black
     let monthColor = UIColor.black
-    var dates = [String]()
+    var dates =  [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
