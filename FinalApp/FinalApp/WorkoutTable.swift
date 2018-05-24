@@ -33,6 +33,37 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
        // workoutRef?.keepSynced(true)
+
+        setRetrieveCallback()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.title = currentDate
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        self.tabBarController?.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func insertNewObject(_ sender: AnyObject) {
+        performSegue(withIdentifier: "addWorkout", sender: nil)
+    }
+
+    
+    func setRetrieveCallback() {
+        print(currentDate!)
+        workoutRef?.child(currentDate!).observe(.value, with:
+            { snapshot in
+                
+                var newWorkouts = [Workout]()
+                
+                for item in snapshot.children {
+                    newWorkouts.append(Workout(snapshot: item as! DataSnapshot))
+                    print(item)
+                }
+                
+                self.myWorkouts = newWorkouts
+                self.tableView.reloadData()
+        })
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +77,13 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkoutSched", for: indexPath) as! WorkoutTVCell
         
+        let this = myWorkouts[indexPath.row]
+        
+        cell.workoutNameIn.text = this.name
+        cell.repsIn.text = this.reps
+        cell.setIn.text = this.sets
+        cell.maxIn.text = this.maxWeight
+        
         return cell
         
     }
@@ -57,6 +95,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBAction func unwindFromCancel(segue:UIStoryboardSegue){}
  
     func addWorkout(newWorkout : Workout) {
+        print(newWorkout.maxWeight, newWorkout.name)
         myWorkouts.append(newWorkout)
         tableView.reloadData()
         addToFirebase(newWorkout: newWorkout)
@@ -66,6 +105,27 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         let newRef = workoutRef?.child(currentDate!).child(newWorkout.name)
         newRef?.setValue(newWorkout.toAnyObject())
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showSelectedWorkout" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                (segue.destination as! WorkoutEditVC).dataFromTable = myWorkouts[(indexPath as NSIndexPath).row]
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func updateCurrent(editedWorkout: Workout) {
+        let ref = workoutRef?.child(currentDate!).child(editedWorkout.name)
+        ref?.updateChildValues(editedWorkout.toAnyObject() as! [AnyHashable : Any])
+    }
+    
     
 }
 

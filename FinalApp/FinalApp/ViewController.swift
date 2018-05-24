@@ -90,9 +90,9 @@ extension ViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        
         cell.dataLabel.text = cellState.text
-        dates.append(cellState.text)
+        let test = String(date.description.prefix(10))
+        dates.append(test)
         handleCellTextColor(view: cell, cellState: cellState)
         
         return cell
@@ -103,7 +103,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
         let cell = self.calendarView.indexPathsForSelectedItems![0]
         if let tabbarController = segue.destination as? UITabBarController {
             let postVC = tabbarController.viewControllers?.first as? WorkoutTable
-            
+            print(dates[(cell as NSIndexPath).row])
             postVC?.currentDate = dates[(cell as NSIndexPath).row]
     
     }

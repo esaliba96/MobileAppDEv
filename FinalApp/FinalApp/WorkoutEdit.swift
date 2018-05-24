@@ -47,7 +47,7 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate {
                 dataFromTable?.reps = repsTF.text!
                 dataFromTable?.sets = setsTF.text!
                 dataFromTable?.maxWeight = restTF.text!
-               // destVC?.updatePersistentStorage()
+                destVC?.updateCurrent(editedWorkout: dataFromTable!)
             } else {
                 if Int(repsTF.text!) != nil {
                     repstoadd = repsTF.text!
