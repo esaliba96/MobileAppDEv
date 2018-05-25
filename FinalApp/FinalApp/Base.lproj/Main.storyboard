@@ -172,7 +172,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G1a-WE-eYi">
-                                <rect key="frame" x="0.0" y="133" width="375" height="303"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="303"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Food" rowHeight="79" id="IJJ-4q-Hwr" customClass="FoodTVCell" customModule="FinalApp" customModuleProvider="target">
@@ -205,32 +205,20 @@
                                     <outlet property="delegate" destination="DOe-7w-vFt" id="9FQ-Rj-UbB"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrB-3K-fl4">
-                                <rect key="frame" x="135" y="82" width="105" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Add Food"/>
-                                <connections>
-                                    <action selector="addNewFood:" destination="DOe-7w-vFt" eventType="touchUpInside" id="mdm-SN-L7x"/>
-                                    <segue destination="ner-qi-tOC" kind="modal" identifier="addNewFood" id="lOT-9Y-y8m"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wrB-3K-fl4" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="135" id="6ZQ-Vb-mYx"/>
-                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="182" id="GSI-hl-RRZ"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="251" id="GSI-hl-RRZ"/>
                             <constraint firstAttribute="trailing" secondItem="G1a-WE-eYi" secondAttribute="trailing" id="LsZ-Er-jgo"/>
-                            <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="wrB-3K-fl4" secondAttribute="bottom" constant="21" id="PIC-cH-56F"/>
                             <constraint firstItem="G1a-WE-eYi" firstAttribute="leading" secondItem="lE0-Js-G00" secondAttribute="leading" id="RxX-3U-C84"/>
-                            <constraint firstItem="wrB-3K-fl4" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" constant="18" id="aa1-2N-Ggj"/>
-                            <constraint firstItem="wrB-3K-fl4" firstAttribute="centerX" secondItem="G1a-WE-eYi" secondAttribute="centerX" id="clI-O6-LMI"/>
-                            <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" constant="69" id="gcE-z5-W1b"/>
+                            <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" id="gcE-z5-W1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lA3-C3-18e"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="7iJ-47-u0a"/>
                     <connections>
                         <outlet property="tableView" destination="G1a-WE-eYi" id="34i-yn-Pqt"/>
+                        <segue destination="ner-qi-tOC" kind="presentation" identifier="addFood" id="5eh-0G-hgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2d-qK-znc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -278,6 +266,55 @@
                                     <segue destination="mjJ-9F-gIy" kind="unwind" unwindAction="unwindFromCancelWithSegue:" id="uiD-Rr-2oY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carbs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mk-83-E2S">
+                                <rect key="frame" x="9" y="271" width="46" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKm-gV-mJc">
+                                <rect key="frame" x="9" y="228" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sugar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAd-XJ-A6W">
+                                <rect key="frame" x="9" y="323" width="46" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Fat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asD-Ed-Mey">
+                                <rect key="frame" x="9" y="419" width="65" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saturated Fat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPt-13-pCx">
+                                <rect key="frame" x="9" y="466" width="103" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Protein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H06-ht-i7J">
+                                <rect key="frame" x="9" y="373" width="55" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Food Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCf-Q1-YHS">
+                                <rect key="frame" x="9" y="180" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -426,11 +463,12 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="ihp-RF-GXa"/>
                     <connections>
                         <outlet property="tableView" destination="556-2k-fwn" id="ota-JM-0Sj"/>
+                        <segue destination="7Ee-Tx-zC8" kind="presentation" identifier="addWorkout" id="ZyH-Eq-e1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4w-Fr-c4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3277.5999999999999" y="-283.80809595202402"/>
+            <point key="canvasLocation" x="3148" y="-285"/>
         </scene>
         <!--Workout EditVC-->
         <scene sceneID="BgZ-Yc-XJg">
@@ -598,4 +636,7 @@
             <point key="canvasLocation" x="439" y="178"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZyH-Eq-e1k"/>
+    </inferredMetricsTieBreakers>
 </document>

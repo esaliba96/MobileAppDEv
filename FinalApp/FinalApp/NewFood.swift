@@ -11,8 +11,7 @@ import UIKit
 class NewFood: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchInput: UITextField!
-    let apiFoodID = "https://api.nutritionix.com/v1_1/search/apple?results=0%3A2&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
-    let apiFood = "https://api.nutritionix.com/v1_1/item?id=513fceb475b8dbbc21000f95&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
+    
     var foodID : FoodIDService?
     var food : FoodService?
     
@@ -20,9 +19,11 @@ class NewFood: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
     }
     
+    
     @IBAction func search(_ sender: UIButton) {
         print("here")
         let session = URLSession(configuration: URLSessionConfiguration.default)
+        let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + searchInput.text! + "?results=0%3A2&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
         
         let request = URLRequest(url: URL(string: apiFoodID)!)
         
@@ -49,8 +50,9 @@ class NewFood: UIViewController, UITextFieldDelegate {
     }
     
     func getFoodName() {
+        let apiFood = "https://api.nutritionix.com/v1_1/item?id=" + (foodID?.hits[0]._id)! + "&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
         let session = URLSession(configuration: URLSessionConfiguration.default)
-        let request = URLRequest(url: URL(string: self.apiFood)!)
+        let request = URLRequest(url: URL(string: apiFood)!)
 
         let task1: URLSessionDataTask = session.dataTask(with: request)
         { (receivedData, response, error) -> Void in

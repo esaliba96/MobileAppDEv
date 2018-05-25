@@ -12,12 +12,21 @@ import FirebaseDatabase
 class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var foods = [Food]()
     var foodRef : DatabaseReference?
+    var currentDate : String?
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func addNewFood(_ sender: UIButton) {
-        performSegue(withIdentifier: "addNewFood", sender: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.navigationItem.title = currentDate
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        self.tabBarController?.navigationItem.rightBarButtonItem = addButton
     }
+    
+    @objc func insertNewObject(_ sender: AnyObject) {
+        performSegue(withIdentifier: "addFood", sender: nil)
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

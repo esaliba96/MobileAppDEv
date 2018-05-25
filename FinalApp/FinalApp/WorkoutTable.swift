@@ -22,11 +22,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     var myWorkouts = [Workout]()
     var workoutRef : DatabaseReference?
     var currentDate : String?
-    
-    @IBAction func addButton(_ sender: Any) {
-        performSegue(withIdentifier: "addWorkout", sender: nil)
-    }
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutRef = Database.database().reference(withPath: "workouts")
