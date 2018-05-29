@@ -29,7 +29,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return foods.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,6 +38,15 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Food", for: indexPath) as! FoodTVCell
+        let this = foods[indexPath.row]
+        
+        cell.name.text = this.name.components(separatedBy: "(")[0]
+        cell.satFat.text = String(this.saturateFat)
+        cell.protein.text = String(this.protein)
+        cell.totalFat.text = String(this.totalFat)
+        cell.sugar.text = String(this.sugars)
+        cell.carbs.text = String(this.carbs)
+        cell.calories.text = String(this.calories)
         
         return cell
     }
@@ -45,9 +54,25 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // workoutRef?.keepSynced(true)
+        foodRef = Database.database().reference(withPath: "food")
+       setRetrieveCallback()
     }
     
+    func setRetrieveCallback() {
+        foodRef?.child(currentDate!).observe(.value, with:
+            { snapshot in
+                
+                var newFoods = [Food]()
+                
+                for item in snapshot.children {
+                    newFoods.append(Food(snapshot: item as! DataSnapshot))
+                    print(item)
+                }
+                
+                self.foods = newFoods
+                self.tableView.reloadData()
+        })
+    }
     @IBAction func unwindFromAdd(segue:UIStoryboardSegue) {
         tableView.reloadData()
     }
@@ -61,7 +86,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func  addToFirebase(newFood : Food) {
-        let newRef = foodRef?.child(newFood.name)
+        let newRef = foodRef?.child(currentDate!).child(String(newFood.name.prefix(10)))
         newRef?.setValue(newFood.toAnyObject())
     }
 }

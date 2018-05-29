@@ -11,6 +11,14 @@ import UIKit
 class FoodTVCell : UITableViewCell {
     
     
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var satFat: UILabel!
+    @IBOutlet weak var totalFat: UILabel!
+    @IBOutlet weak var sugar: UILabel!
+    @IBOutlet weak var calories: UILabel!
+    @IBOutlet weak var carbs: UILabel!
+    @IBOutlet weak var protein: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

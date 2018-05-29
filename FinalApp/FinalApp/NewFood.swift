@@ -11,6 +11,13 @@ import UIKit
 class NewFood: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchInput: UITextField!
+    @IBOutlet weak var satFatTxt: UILabel!
+    @IBOutlet weak var totalFatTxt: UILabel!
+    @IBOutlet weak var calText: UILabel!
+    @IBOutlet weak var proteinTxt: UILabel!
+    @IBOutlet weak var foodNameTxt: UILabel!
+    @IBOutlet weak var carbsTxt: UILabel!
+    @IBOutlet weak var sugarTxt: UILabel!
     
     var foodID : FoodIDService?
     var food : FoodService?
@@ -63,9 +70,16 @@ class NewFood: UIViewController, UITextFieldDelegate {
                     let food = try decoder.decode(FoodService.self, from: data)
 
                     self.food = food
-                    let newFood = Food(food: self.food!)
-                    print(newFood.name, newFood.calories)
+                    
                     DispatchQueue.main.async {
+                        let newFood = Food(food: self.food!)
+                        self.foodNameTxt.text = String(newFood.name.components(separatedBy: "(")[0])
+                        self.proteinTxt.text = String(newFood.protein)
+                        self.satFatTxt.text = String(newFood.saturateFat)
+                        self.totalFatTxt.text = String(newFood.totalFat)
+                        self.carbsTxt.text = String(newFood.carbs)
+                        self.sugarTxt.text = String(newFood.sugars)
+                        self.calText.text  = String(newFood.calories)
                     }
 
                 } catch {

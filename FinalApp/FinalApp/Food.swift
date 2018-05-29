@@ -28,8 +28,18 @@ class Food : NSObject {
         self.sugars = food.nf_sugars ?? 0.0
         self.carbs = food.nf_total_carbohydrate ?? 0.0
         self.ref = nil
-        
-        super.init()
+    }
+    
+    init(snapshot: DataSnapshot) {
+        let snapvalues = snapshot.value as! [String : AnyObject]
+        name = snapvalues["name"] as? String ?? "N?A"
+        calories = snapvalues["calories"] as? Double ?? 0.0
+        carbs = snapvalues["carbs"] as? Double ?? 0.0
+        totalFat = snapvalues["totalFat"] as? Double ?? 0.0
+        protein = snapvalues["protein"] as? Double ?? 0.0
+        saturateFat = snapvalues["satFat"] as? Double ?? 0.0
+        sugars = snapvalues["sugars"] as? Double ?? 0.0
+        ref = snapshot.ref
     }
     
     func toAnyObject() -> Any {

@@ -104,7 +104,7 @@ extension ViewController: JTAppleCalendarViewDelegate {
         if let tabbarController = segue.destination as? UITabBarController {
             let postVC = tabbarController.viewControllers?.first as? WorkoutTable
               postVC?.currentDate = dates[(cell as NSIndexPath).row]
-            let foodVC = tabbarController.viewControllers?.first as? FoodTable
+            let foodVC = tabbarController.viewControllers![1] as? FoodTable
               foodVC?.currentDate = dates[(cell as NSIndexPath).row]
 
         }

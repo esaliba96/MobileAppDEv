@@ -28,8 +28,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         workoutRef = Database.database().reference(withPath: "workouts")
         tableView.delegate = self
         tableView.dataSource = self
-       // workoutRef?.keepSynced(true)
-
+  
         setRetrieveCallback()
     }
     
@@ -91,7 +90,6 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBAction func unwindFromCancel(segue:UIStoryboardSegue){}
  
     func addWorkout(newWorkout : Workout) {
-        print(newWorkout.maxWeight, newWorkout.name)
         myWorkouts.append(newWorkout)
         tableView.reloadData()
         addToFirebase(newWorkout: newWorkout)
