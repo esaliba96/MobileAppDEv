@@ -13,7 +13,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var foods = [Food]()
     var foodRef : DatabaseReference?
     var currentDate : String?
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,14 +40,11 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Food", for: indexPath) as! FoodTVCell
         let this = foods[indexPath.row]
         
-        cell.name.text = this.name.components(separatedBy: "(")[0]
-        cell.satFat.text = String(this.saturateFat)
-        cell.protein.text = String(this.protein)
-        cell.totalFat.text = String(this.totalFat)
-        cell.sugar.text = String(this.sugars)
-        cell.carbs.text = String(this.carbs)
-        cell.calories.text = String(this.calories)
-        
+        let months = ["cal", "carb", "protein", "satFat", "tFat", "sug"]
+        let total = (this.calories + this.carbs + this.protein + this.saturateFat + this.totalFat + this.sugars)/100.0
+        let percentages = [this.calories/total, this.carbs/total, this.protein/total, this.saturateFat/total, this.totalFat/total, this.sugars/total]
+        cell.setChart(dataPoints: months, values: percentages)
+        cell.name.text = this.name
         return cell
     }
     
@@ -77,7 +74,22 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showDetailFood" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                (segue.destination as! NewFood).dataFromTable = foods[(indexPath as NSIndexPath).row]
+            }
+        }
+    }
+    
     @IBAction func unwindFromCancel(segue:UIStoryboardSegue){}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func addFood(newFood: Food) {
         foods.append(newFood)

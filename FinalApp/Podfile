@@ -9,6 +9,7 @@ target 'FinalApp' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Charts'
   # Pods for FinalApp
 
   target 'FinalAppTests' do
