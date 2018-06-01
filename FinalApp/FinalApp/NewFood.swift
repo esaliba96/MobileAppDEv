@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NewFood: UIViewController, UITextFieldDelegate {
+class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     
     @IBOutlet weak var searchInput: UITextField!
     @IBOutlet weak var satFatTxt: UILabel!
@@ -24,6 +25,9 @@ class NewFood: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var searchButton: UIButton!
     var foodID : FoodIDService?
     var food : FoodService?
+    var foodNames = [String]()
+    var foods = [Food]()
+    @IBOutlet weak var picker: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +59,7 @@ class NewFood: UIViewController, UITextFieldDelegate {
     @IBAction func search(_ sender: UIButton) {
         print("here")
         let session = URLSession(configuration: URLSessionConfiguration.default)
-        let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + searchInput.text! + "?results=0%3A2&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
+        let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + searchInput.text! + "?results=0%3A6&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
         
         let request = URLRequest(url: URL(string: apiFoodID)!)
         
@@ -68,8 +72,10 @@ class NewFood: UIViewController, UITextFieldDelegate {
                     let foodID = try decoder.decode(FoodIDService.self, from: data)
                     
                     self.foodID = foodID
-                    self.getFoodName()
+                    self.getFoods()
+                    self.getFoodName(nbr: 0)
                     DispatchQueue.main.async {
+                        self.picker.reloadComponent(0)
                     }
                     
                 } catch {
@@ -81,8 +87,9 @@ class NewFood: UIViewController, UITextFieldDelegate {
         task.resume()
     }
     
-    func getFoodName() {
-        let apiFood = "https://api.nutritionix.com/v1_1/item?id=" + (foodID?.hits[0]._id)! + "&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
+    func getFoodName(nbr : Int) {
+        print(nbr)
+        let apiFood = "https://api.nutritionix.com/v1_1/item?id=" + (foodID?.hits[nbr]._id)! + "&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let request = URLRequest(url: URL(string: apiFood)!)
 
@@ -98,13 +105,15 @@ class NewFood: UIViewController, UITextFieldDelegate {
                     
                     DispatchQueue.main.async {
                         let newFood = Food(food: self.food!)
-                        self.foodNameTxt.text = String(newFood.name.components(separatedBy: "(")[0])
-                        self.proteinTxt.text = String(newFood.protein)
-                        self.satFatTxt.text = String(newFood.saturateFat)
-                        self.totalFatTxt.text = String(newFood.totalFat)
-                        self.carbsTxt.text = String(newFood.carbs)
-                        self.sugarTxt.text = String(newFood.sugars)
-                        self.calText.text  = String(newFood.calories)
+                        self.foods.append(newFood)
+                        self.foodNames.append(newFood.name.components(separatedBy: "(")[0])
+//                        self.foodNameTxt.text = String(newFood.name.components(separatedBy: "(")[0])
+//                        self.proteinTxt.text = String(newFood.protein)
+//                        self.satFatTxt.text = String(newFood.saturateFat)
+//                        self.totalFatTxt.text = String(newFood.totalFat)
+//                        self.carbsTxt.text = String(newFood.carbs)
+//                        self.sugarTxt.text = String(newFood.sugars)
+//                        self.calText.text  = String(newFood.calories)
                     }
 
                 } catch {
@@ -115,6 +124,12 @@ class NewFood: UIViewController, UITextFieldDelegate {
         task1.resume()
     }
     
+    func getFoods() {
+        for i in 0...5 {
+            getFoodName(nbr: i)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindFromAdd" {
             let destVC = segue.destination as? FoodTable
@@ -123,4 +138,18 @@ class NewFood: UIViewController, UITextFieldDelegate {
             destVC?.addFood(newFood: newFood)
         }
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return foodNames.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        print(foodNames[row])
+        return foodNames[row]
+    }
+    
 }

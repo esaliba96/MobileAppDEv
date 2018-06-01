@@ -246,13 +246,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Food Name To Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wxe-6g-Apt">
-                                <rect key="frame" x="16" y="148" width="183" height="30"/>
+                                <rect key="frame" x="16" y="110" width="183" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjd-i5-idv">
-                                <rect key="frame" x="274" y="148" width="67" height="33"/>
+                                <rect key="frame" x="274" y="110" width="67" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="Pan-wc-TzD"/>
                                 </constraints>
@@ -378,15 +378,28 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="YTT-Pp-Ngz"/>
                                 </constraints>
                             </stackView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAQ-VC-pwO">
+                                <rect key="frame" x="0.0" y="151" width="375" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="IIk-k4-mbu"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="ner-qi-tOC" id="8fB-6U-XtI"/>
+                                    <outlet property="delegate" destination="ner-qi-tOC" id="Ezx-0d-wpg"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cCs-tn-IlP" firstAttribute="top" secondItem="wxe-6g-Apt" secondAttribute="bottom" constant="72" id="0fh-NW-QdO"/>
+                            <constraint firstItem="cCs-tn-IlP" firstAttribute="top" secondItem="wxe-6g-Apt" secondAttribute="bottom" constant="110" id="0fh-NW-QdO"/>
                             <constraint firstItem="I6m-aH-y0x" firstAttribute="top" secondItem="cCs-tn-IlP" secondAttribute="top" id="1wv-st-gys"/>
                             <constraint firstItem="cCs-tn-IlP" firstAttribute="leading" secondItem="wxe-6g-Apt" secondAttribute="leading" id="Ayp-jy-RnD"/>
-                            <constraint firstItem="wxe-6g-Apt" firstAttribute="top" secondItem="JNj-T3-8Jr" secondAttribute="top" constant="84" id="Gxw-6Z-nlo"/>
+                            <constraint firstItem="gAQ-VC-pwO" firstAttribute="leading" secondItem="6y4-LP-eJl" secondAttribute="leading" id="Def-nc-ejI"/>
+                            <constraint firstItem="wxe-6g-Apt" firstAttribute="top" secondItem="JNj-T3-8Jr" secondAttribute="top" constant="46" id="Gxw-6Z-nlo"/>
                             <constraint firstItem="wxe-6g-Apt" firstAttribute="top" secondItem="xjd-i5-idv" secondAttribute="top" id="QPS-LY-q7a"/>
+                            <constraint firstAttribute="trailing" secondItem="gAQ-VC-pwO" secondAttribute="trailing" id="T2H-wR-TEF"/>
                             <constraint firstItem="wxe-6g-Apt" firstAttribute="leading" secondItem="6y4-LP-eJl" secondAttribute="leadingMargin" id="cf2-rX-FfP"/>
+                            <constraint firstItem="cCs-tn-IlP" firstAttribute="top" secondItem="gAQ-VC-pwO" secondAttribute="bottom" constant="8" symbolic="YES" id="d84-eD-pEH"/>
                             <constraint firstItem="JNj-T3-8Jr" firstAttribute="trailing" secondItem="xjd-i5-idv" secondAttribute="trailing" constant="34" id="dEe-hY-tVc"/>
                             <constraint firstItem="I6m-aH-y0x" firstAttribute="trailing" secondItem="xjd-i5-idv" secondAttribute="trailing" constant="-33" id="kbb-ae-5iO"/>
                             <constraint firstItem="xjd-i5-idv" firstAttribute="leading" secondItem="wxe-6g-Apt" secondAttribute="trailing" constant="75" id="sLn-KB-fjX"/>
@@ -399,6 +412,7 @@
                         <outlet property="canceButton" destination="zi9-CT-0Tm" id="FRR-9B-lwO"/>
                         <outlet property="carbsTxt" destination="HOn-lX-yB3" id="pOf-BK-Fey"/>
                         <outlet property="foodNameTxt" destination="5rp-Ln-vKo" id="E2X-98-oFM"/>
+                        <outlet property="picker" destination="gAQ-VC-pwO" id="WMo-b6-9Jl"/>
                         <outlet property="proteinTxt" destination="jm5-ya-YNM" id="LSo-yo-4Fs"/>
                         <outlet property="sabeButton" destination="DgJ-4n-4cb" id="WRF-rV-kUf"/>
                         <outlet property="satFatTxt" destination="P64-Uo-Qs1" id="BNv-9w-drN"/>
@@ -411,7 +425,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNr-j7-8VX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mjJ-9F-gIy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4041" y="447"/>
+            <point key="canvasLocation" x="4040.8000000000002" y="446.62668665667172"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="zKL-eL-iFB">
