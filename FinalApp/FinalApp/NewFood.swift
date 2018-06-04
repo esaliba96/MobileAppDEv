@@ -25,6 +25,7 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     @IBOutlet weak var searchButton: UIButton!
     var foodID : FoodIDService?
     var food : FoodService?
+    var foodToBeAdded : Food?
     var foodNames = [String]()
     var foods = [Food]()
     @IBOutlet weak var picker: UIPickerView!
@@ -44,6 +45,7 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
             canceButton.isHidden = true
             sabeButton.isHidden = true
             searchButton.isHidden = true
+            picker.isHidden = true
         } else {
             foodNameTxt.text = ""
             proteinTxt.text = ""
@@ -73,9 +75,8 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
                     
                     self.foodID = foodID
                     self.getFoods()
-                    self.getFoodName(nbr: 0)
+                    //self.getFoodName(nbr: 0)
                     DispatchQueue.main.async {
-                        self.picker.reloadComponent(0)
                     }
                     
                 } catch {
@@ -106,14 +107,9 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
                     DispatchQueue.main.async {
                         let newFood = Food(food: self.food!)
                         self.foods.append(newFood)
-                        self.foodNames.append(newFood.name.components(separatedBy: "(")[0])
-//                        self.foodNameTxt.text = String(newFood.name.components(separatedBy: "(")[0])
-//                        self.proteinTxt.text = String(newFood.protein)
-//                        self.satFatTxt.text = String(newFood.saturateFat)
-//                        self.totalFatTxt.text = String(newFood.totalFat)
-//                        self.carbsTxt.text = String(newFood.carbs)
-//                        self.sugarTxt.text = String(newFood.sugars)
-//                        self.calText.text  = String(newFood.calories)
+                        self.foodNames.append(String(newFood.name.prefix(40)))
+                        self.picker.reloadComponent(0)
+                        self.populateText(newFood: self.foods[0])
                     }
 
                 } catch {
@@ -133,9 +129,8 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindFromAdd" {
             let destVC = segue.destination as? FoodTable
-            let newFood = Food(food: food!)
-            print(newFood.calories)
-            destVC?.addFood(newFood: newFood)
+            
+            destVC?.addFood(newFood: foodToBeAdded!)
         }
     }
     
@@ -150,6 +145,22 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         print(foodNames[row])
         return foodNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let newFood = foods[picker.selectedRow(inComponent: 0)]
+        populateText(newFood: newFood)
+    }
+    
+    func populateText(newFood: Food) {
+        foodToBeAdded = newFood
+        foodNameTxt.text = String(newFood.name.prefix(25).components(separatedBy: ",")[0])
+        proteinTxt.text = String(newFood.protein)
+        satFatTxt.text = String(newFood.saturateFat)
+        totalFatTxt.text = String(newFood.totalFat)
+        carbsTxt.text = String(newFood.carbs)
+        sugarTxt.text = String(newFood.sugars)
+        calText.text  = String(newFood.calories)
     }
     
 }

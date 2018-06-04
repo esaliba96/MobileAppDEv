@@ -175,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Food" rowHeight="270" id="IJJ-4q-Hwr" customClass="FoodTVCell" customModule="FinalApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Food" rowHeight="270" id="IJJ-4q-Hwr" customClass="FoodTVCell" customModule="FinalApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="270"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IJJ-4q-Hwr" id="5ge-eC-jBW">
@@ -427,7 +427,7 @@
             </objects>
             <point key="canvasLocation" x="4040.8000000000002" y="446.62668665667172"/>
         </scene>
-        <!--Item 1-->
+        <!--Workout-->
         <scene sceneID="zKL-eL-iFB">
             <objects>
                 <viewController id="ioc-u1-4vl" customClass="WorkoutTable" customModule="FinalApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -439,7 +439,7 @@
                                 <rect key="frame" x="0.0" y="103" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutSched" rowHeight="54" id="3a5-iK-K86" customClass="WorkoutTVCell" customModule="FinalApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutSched" rowHeight="54" id="3a5-iK-K86" customClass="WorkoutTVCell" customModule="FinalApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3a5-iK-K86" id="Bdc-tO-YpV">
@@ -552,15 +552,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="96q-kD-I5i"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="ihp-RF-GXa"/>
+                    <tabBarItem key="tabBarItem" title="Workout" id="ihp-RF-GXa">
+                        <color key="badgeColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </tabBarItem>
                     <connections>
+                        <outlet property="item1" destination="ihp-RF-GXa" id="lDs-1b-0rr"/>
                         <outlet property="tableView" destination="556-2k-fwn" id="ota-JM-0Sj"/>
                         <segue destination="7Ee-Tx-zC8" kind="presentation" identifier="addWorkout" id="ZyH-Eq-e1k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D4w-Fr-c4n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3148" y="-285"/>
+            <point key="canvasLocation" x="3150" y="-285"/>
         </scene>
         <!--Workout EditVC-->
         <scene sceneID="BgZ-Yc-XJg">
@@ -707,7 +710,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s60-mu-Jo1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2084" y="178"/>
+            <point key="canvasLocation" x="2079" y="171"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hhL-C6-fgG">

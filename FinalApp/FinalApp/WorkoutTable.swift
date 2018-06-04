@@ -23,13 +23,16 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     var workoutRef : DatabaseReference?
     var currentDate : String?
        
+    @IBOutlet weak var item1: UITabBarItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutRef = Database.database().reference(withPath: "workouts")
         tableView.delegate = self
         tableView.dataSource = self
-  
+        item1.image = UIImage(named: "art.png")?.withRenderingMode(.alwaysOriginal)
+        
         setRetrieveCallback()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +40,7 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.tabBarController?.navigationItem.title = currentDate
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.tabBarController?.navigationItem.rightBarButtonItem = addButton
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
     }
     
     @objc func insertNewObject(_ sender: AnyObject) {
