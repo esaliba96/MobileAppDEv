@@ -19,10 +19,7 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     @IBOutlet weak var foodNameTxt: UILabel!
     @IBOutlet weak var carbsTxt: UILabel!
     @IBOutlet weak var sugarTxt: UILabel!
-    var dataFromTable : Food!
-    @IBOutlet weak var canceButton: UIButton!
-    @IBOutlet weak var sabeButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
+
     var foodID : FoodIDService?
     var food : FoodService?
     var foodToBeAdded : Food?
@@ -32,29 +29,14 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if dataFromTable != nil {
-            foodNameTxt.text = dataFromTable.name.components(separatedBy: "(")[0]
-            proteinTxt.text = String(describing: dataFromTable.protein)
-            satFatTxt.text = String(describing: dataFromTable.saturateFat)
-            totalFatTxt.text = String(describing: dataFromTable.totalFat)
-            carbsTxt.text = String(describing: dataFromTable.carbs)
-            sugarTxt.text = String(describing: dataFromTable.sugars)
-            calText.text  = String(describing: dataFromTable.calories)
-            searchInput.isHidden = true
-            canceButton.isHidden = true
-            sabeButton.isHidden = true
-            searchButton.isHidden = true
-            picker.isHidden = true
-        } else {
-            foodNameTxt.text = ""
-            proteinTxt.text = ""
-            satFatTxt.text = ""
-            totalFatTxt.text = ""
-            carbsTxt.text = ""
-            sugarTxt.text = ""
-            calText.text  = ""
-        }
+
+        foodNameTxt.text = ""
+        proteinTxt.text = ""
+        satFatTxt.text = ""
+        totalFatTxt.text = ""
+        carbsTxt.text = ""
+        sugarTxt.text = ""
+        calText.text  = ""
     }
     
     

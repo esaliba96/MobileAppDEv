@@ -8,12 +8,16 @@
 
 import UIKit
 import FirebaseDatabase
+import Charts
 
 class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var foods = [Food]()
     var foodRef : DatabaseReference?
     var currentDate : String?
-    
+    @IBOutlet weak var chart : PieChartView!
+    var totalCal = Double()
+    @IBOutlet weak var item2: UITabBarItem!
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,6 +25,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.tabBarController?.navigationItem.title = currentDate
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.tabBarController?.navigationItem.rightBarButtonItem = addButton
+        self.tabBarController?.tabBar.barTintColor = UIColor.white
     }
     
     @objc func insertNewObject(_ sender: AnyObject) {
@@ -40,11 +45,12 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Food", for: indexPath) as! FoodTVCell
         let this = foods[indexPath.row]
         
-        let months = ["cal", "carb", "protein", "satFat", "tFat", "sug"]
-        let total = (this.calories + this.carbs + this.protein + this.saturateFat + this.totalFat + this.sugars)/100.0
-        let percentages = [this.calories/total, this.carbs/total, this.protein/total, this.saturateFat/total, this.totalFat/total, this.sugars/total]
-        cell.setChart(dataPoints: months, values: percentages)
         cell.name.text = this.name
+
+        cell.fatText.text = String(describing: this.protein)
+        cell.carbsText.text = String(describing: this.totalFat)
+        cell.protText.text = String(describing: this.carbs)
+        
         return cell
     }
     
@@ -52,7 +58,8 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         foodRef = Database.database().reference(withPath: "food")
-       setRetrieveCallback()
+        item2.image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
+        setRetrieveCallback()
     }
     
     func setRetrieveCallback() {
@@ -62,14 +69,22 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 var newFoods = [Food]()
                 
                 for item in snapshot.children {
-                    newFoods.append(Food(snapshot: item as! DataSnapshot))
-                    print(item)
+                    let toBeAdded = Food(snapshot: item as! DataSnapshot)
+                    newFoods.append(toBeAdded)
+                    self.totalCal += toBeAdded.calories
+                    let months = ["consumed", "allowed"]
+                    let total = 5000.0
+                    print(self.totalCal)
+                    let percentages = [self.totalCal/total, (total-self.totalCal)/total]
+                    self.setChart(dataPoints: months, values: percentages)
                 }
                 
                 self.foods = newFoods
                 self.tableView.reloadData()
         })
+
     }
+
     @IBAction func unwindFromAdd(segue:UIStoryboardSegue) {
         tableView.reloadData()
     }
@@ -80,7 +95,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if segue.identifier == "showDetailFood" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                (segue.destination as! NewFood).dataFromTable = foods[(indexPath as NSIndexPath).row]
+                (segue.destination as! FoodDetail).this = foods[(indexPath as NSIndexPath).row]
             }
         }
     }
@@ -100,5 +115,43 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func  addToFirebase(newFood : Food) {
         let newRef = foodRef?.child(currentDate!).child(String(newFood.name.prefix(10)))
         newRef?.setValue(newFood.toAnyObject())
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let foodToDelete = foods[(indexPath as NSIndexPath).row]
+            foods.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            let newRef = foodRef?.child(currentDate!).child(String(foodToDelete.name.prefix(10)))
+            newRef?.removeValue()
+        }
+    }
+    
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i], data: values[i] as AnyObject)
+            dataEntries.append(dataEntry)
+        }
+        
+        chart.chartDescription?.text = ""
+        chart.legend.enabled = false
+        chart.drawHoleEnabled = false
+        chart.frame.size = CGSize(width: 500, height: chart.frame.size.height)
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "")
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        chart.data = pieChartData
+        
+        var colors: [UIColor] = []
+        
+        colors.append(UIColor(red: CGFloat(88.0/255), green: CGFloat(170.0/255), blue: CGFloat(213.0/255), alpha: 1))
+        colors.append(UIColor(red: CGFloat(129.0/255), green: CGFloat(84.0/255), blue: CGFloat(91.0/255), alpha: 1))
+        colors.append(UIColor(red: CGFloat(20.0/255), green: CGFloat(201.0/255), blue: CGFloat(74.0/255), alpha: 1))
+        
+        pieChartDataSet.colors = colors
+        
     }
 }

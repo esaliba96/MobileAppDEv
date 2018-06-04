@@ -125,6 +125,17 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let workoutToDelete = myWorkouts[(indexPath as NSIndexPath).row]
+            myWorkouts.remove(at: (indexPath as NSIndexPath).row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            let newRef = workoutRef?.child(currentDate!).child(String(workoutToDelete.name))
+            newRef?.removeValue()
+        }
+    }
+    
 }
 
 

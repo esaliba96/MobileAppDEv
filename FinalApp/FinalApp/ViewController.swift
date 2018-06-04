@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     let selectedMonthColor = UIColor.black
     let monthColor = UIColor.black
     var dates =  [String]()
+    @IBOutlet weak var item1: UITabBarItem!
+    @IBOutlet weak var item2: UITabBarItem!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
