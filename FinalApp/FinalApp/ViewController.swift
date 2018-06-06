@@ -22,12 +22,13 @@ class ViewController: UIViewController {
     var dates =  [String]()
     @IBOutlet weak var item1: UITabBarItem!
     @IBOutlet weak var item2: UITabBarItem!
+    var user : String?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        Database.database().isPersistenceEnabled = true
+//        Database.database().isPersistenceEnabled = true
         
         calendarView.visibleDates { (visibleDate) in
             self.setupViewsOfCalendar(from: visibleDate)
@@ -61,6 +62,9 @@ class ViewController: UIViewController {
         
         self.formatter.dateFormat = "MMMM"
         self.month.text = formatter.string(from: date)
+    }
+    
+    @IBAction func unwindFromRegister(segue:UIStoryboardSegue) {
     }
 }
 
@@ -103,13 +107,17 @@ extension ViewController: JTAppleCalendarViewDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = self.calendarView.indexPathsForSelectedItems![0]
-        if let tabbarController = segue.destination as? UITabBarController {
-            let postVC = tabbarController.viewControllers?.first as? WorkoutTable
-              postVC?.currentDate = dates[(cell as NSIndexPath).row]
-            let foodVC = tabbarController.viewControllers![1] as? FoodTable
-              foodVC?.currentDate = dates[(cell as NSIndexPath).row]
+        if segue.identifier == "toDate" {
+            let cell = self.calendarView.indexPathsForSelectedItems![0]
+            if let tabbarController = segue.destination as? UITabBarController {
+                let postVC = tabbarController.viewControllers?.first as? WorkoutTable
+                  postVC?.currentDate = dates[(cell as NSIndexPath).row]
+                  postVC?.user = self.user!
+                let foodVC = tabbarController.viewControllers![1] as? FoodTable
+                    foodVC?.currentDate = dates[(cell as NSIndexPath).row]
+                    foodVC?.user = self.user!
 
+            }
         }
     }
 }

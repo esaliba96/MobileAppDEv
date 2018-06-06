@@ -17,7 +17,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var chart : PieChartView!
     var totalCal = Double()
     @IBOutlet weak var item2: UITabBarItem!
-
+    var user : String?
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +59,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        foodRef = Database.database().reference(withPath: "food")
+        foodRef = Database.database().reference(withPath: "food" + "-" + user!)
         item2.image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
         setRetrieveCallback()
     }

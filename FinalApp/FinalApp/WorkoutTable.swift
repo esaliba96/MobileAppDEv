@@ -22,10 +22,11 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     var myWorkouts = [Workout]()
     var workoutRef : DatabaseReference?
     var currentDate : String?
+    var user : String?
        
     override func viewDidLoad() {
         super.viewDidLoad()
-        workoutRef = Database.database().reference(withPath: "workouts")
+        workoutRef = Database.database().reference(withPath: "workouts" + "-" + user!)
         tableView.delegate = self
         tableView.dataSource = self
         self.tabBarController?.tabBar.items![0].image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)

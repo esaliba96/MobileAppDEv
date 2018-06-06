@@ -31,6 +31,8 @@
 		4195EAE320B4A4C500841D44 /* FoodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4195EAE220B4A4C500841D44 /* FoodService.swift */; };
 		41CA982620AE38D800E5D523 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41CA982520AE38D800E5D523 /* GoogleService-Info.plist */; };
 		41CA982820AE401100E5D523 /* WorkoutEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CA982720AE401100E5D523 /* WorkoutEdit.swift */; };
+		41E6C3D020C8975B0071EB4F /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E6C3CF20C8975B0071EB4F /* SignUp.swift */; };
+		41E6C3D220C89C030071EB4F /* tough.png in Resources */ = {isa = PBXBuildFile; fileRef = 41E6C3D120C89C020071EB4F /* tough.png */; };
 		6ED404C5D818908B3AF5319B /* Pods_FinalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E865117C5970B7E1D9E01772 /* Pods_FinalApp.framework */; };
 		EA7E13088CDE60F3642713EE /* Pods_FinalAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604E1A788860EBBFC9D67083 /* Pods_FinalAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +85,8 @@
 		4195EAE220B4A4C500841D44 /* FoodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodService.swift; sourceTree = "<group>"; };
 		41CA982520AE38D800E5D523 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41CA982720AE401100E5D523 /* WorkoutEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEdit.swift; sourceTree = "<group>"; };
+		41E6C3CF20C8975B0071EB4F /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		41E6C3D120C89C020071EB4F /* tough.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tough.png; sourceTree = "<group>"; };
 		5291C7DF2624738522F58BD9 /* Pods-FinalAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalAppTests/Pods-FinalAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		604E1A788860EBBFC9D67083 /* Pods_FinalAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB88802D181B2A0DC0CFC36 /* Pods_FinalAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinalAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +166,8 @@
 				418A4F6F20AB4F7000D8E4A6 /* AppDelegate.swift */,
 				418A4F7120AB4F7000D8E4A6 /* ViewController.swift */,
 				418A4F7320AB4F7000D8E4A6 /* Main.storyboard */,
+				41E6C3CF20C8975B0071EB4F /* SignUp.swift */,
+				41E6C3D120C89C020071EB4F /* tough.png */,
 				41556D7C20C74A1B0087B64C /* Progress.swift */,
 				4122EC5A20C5C6B20002E97B /* FoodDetail.swift */,
 				4195EAE020B4993400841D44 /* NewFood.swift */,
@@ -327,6 +333,7 @@
 				418A4F7A20AB4F7000D8E4A6 /* LaunchScreen.storyboard in Resources */,
 				418A4F7720AB4F7000D8E4A6 /* Assets.xcassets in Resources */,
 				41CA982620AE38D800E5D523 /* GoogleService-Info.plist in Resources */,
+				41E6C3D220C89C030071EB4F /* tough.png in Resources */,
 				41410BCF20C1E60A00A82FA6 /* art.png in Resources */,
 				418A4F7520AB4F7000D8E4A6 /* Main.storyboard in Resources */,
 				414644A620C5E085008216BE /* food.png in Resources */,
@@ -452,6 +459,7 @@
 				41CA982820AE401100E5D523 /* WorkoutEdit.swift in Sources */,
 				4195EADD20B496E000841D44 /* Food.swift in Sources */,
 				4195EADF20B497A600841D44 /* FoodTVCell.swift in Sources */,
+				41E6C3D020C8975B0071EB4F /* SignUp.swift in Sources */,
 				4156435720ACC1C600C847A4 /* WorkoutTVCell.swift in Sources */,
 				4156435920ACC29200C847A4 /* Workout.swift in Sources */,
 			);
