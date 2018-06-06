@@ -19,7 +19,8 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
     var workoutNames = [String]()
     @IBOutlet weak var pickerworkout: UIPickerView!
     var workoutRef : DatabaseReference?
-    
+    var newWorkouts = [Workout]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutRef = Database.database().reference(withPath: "workouts")
@@ -28,8 +29,10 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
             repsTF.text = dataFromTable?.reps
             setsTF.text = dataFromTable?.sets
             restTF.text = dataFromTable?.maxWeight
+            pickerworkout.isHidden = true
+        } else {
+            getWorkoutNames()
         }
-        getWorkoutNames()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,12 +89,17 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
                 self.workoutRef?.child(key).observe(.value, with:
                     { snapshot in
                         
-                        var newWorkouts = [Workout]()
                         
                         for item in snapshot.children {
-                            newWorkouts.append(Workout(snapshot: item as! DataSnapshot))
-                             self.workoutNames.append(Workout(snapshot: item as! DataSnapshot).name)
-                            self.pickerworkout.reloadAllComponents()
+                            if !self.workoutNames.contains(Workout(snapshot: item as! DataSnapshot).name) {
+                                self.newWorkouts.append(Workout(snapshot: item as! DataSnapshot))
+                                self.workoutNames.append(Workout(snapshot: item as! DataSnapshot).name)
+                                self.pickerworkout.reloadAllComponents()
+                                self.nameTF.text = self.newWorkouts[0].name
+                                self.repsTF.text = self.newWorkouts[0].reps
+                                self.setsTF.text = self.newWorkouts[0].sets
+                                self.restTF.text = self.newWorkouts[0].maxWeight
+                            }
                         }
                 })
             }
@@ -104,6 +112,9 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         nameTF.text = workoutNames[pickerworkout.selectedRow(inComponent: 0)]
+        repsTF.text = newWorkouts[pickerworkout.selectedRow(inComponent: 0)].reps
+        setsTF.text = newWorkouts[pickerworkout.selectedRow(inComponent: 0)].sets
+        restTF.text = newWorkouts[pickerworkout.selectedRow(inComponent: 0)].maxWeight
     }
     
 }

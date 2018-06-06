@@ -41,7 +41,6 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     
     @IBAction func search(_ sender: UIButton) {
-        print("here")
         let session = URLSession(configuration: URLSessionConfiguration.default)
         let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + searchInput.text! + "?results=0%3A6&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
         
@@ -65,7 +64,6 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
                     print("Exception on Decode: \(error)")
                 }
             }
-            print(self.foodID?.hits[0]._id ?? 0)
         }
         task.resume()
     }
@@ -111,7 +109,6 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "unwindFromAdd" {
             let destVC = segue.destination as? FoodTable
-            
             destVC?.addFood(newFood: foodToBeAdded!)
         }
     }
@@ -120,7 +117,8 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
         return foodNames.count
     }
     
