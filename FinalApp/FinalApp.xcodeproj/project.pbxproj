@@ -11,6 +11,7 @@
 		4122EC5B20C5C6B20002E97B /* FoodDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4122EC5A20C5C6B20002E97B /* FoodDetail.swift */; };
 		41410BCF20C1E60A00A82FA6 /* art.png in Resources */ = {isa = PBXBuildFile; fileRef = 41410BCE20C1E60A00A82FA6 /* art.png */; };
 		414644A620C5E085008216BE /* food.png in Resources */ = {isa = PBXBuildFile; fileRef = 414644A520C5E085008216BE /* food.png */; };
+		41556D7D20C74A1B0087B64C /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41556D7C20C74A1B0087B64C /* Progress.swift */; };
 		4156435520ACC13100C847A4 /* WorkoutTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4156435420ACC13100C847A4 /* WorkoutTable.swift */; };
 		4156435720ACC1C600C847A4 /* WorkoutTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4156435620ACC1C600C847A4 /* WorkoutTVCell.swift */; };
 		4156435920ACC29200C847A4 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4156435820ACC29200C847A4 /* Workout.swift */; };
@@ -56,6 +57,7 @@
 		4122EC5A20C5C6B20002E97B /* FoodDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetail.swift; sourceTree = "<group>"; };
 		41410BCE20C1E60A00A82FA6 /* art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = art.png; sourceTree = "<group>"; };
 		414644A520C5E085008216BE /* food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = food.png; sourceTree = "<group>"; };
+		41556D7C20C74A1B0087B64C /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		4156435420ACC13100C847A4 /* WorkoutTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTable.swift; sourceTree = "<group>"; };
 		4156435620ACC1C600C847A4 /* WorkoutTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVCell.swift; sourceTree = "<group>"; };
 		4156435820ACC29200C847A4 /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				418A4F6F20AB4F7000D8E4A6 /* AppDelegate.swift */,
 				418A4F7120AB4F7000D8E4A6 /* ViewController.swift */,
 				418A4F7320AB4F7000D8E4A6 /* Main.storyboard */,
+				41556D7C20C74A1B0087B64C /* Progress.swift */,
 				4122EC5A20C5C6B20002E97B /* FoodDetail.swift */,
 				4195EAE020B4993400841D44 /* NewFood.swift */,
 				414644A520C5E085008216BE /* food.png */,
@@ -442,6 +445,7 @@
 				4195EAE120B4993400841D44 /* NewFood.swift in Sources */,
 				4195EAD920B493DF00841D44 /* FoodTable.swift in Sources */,
 				418A4F9E20AB55E700D8E4A6 /* CustomCell.swift in Sources */,
+				41556D7D20C74A1B0087B64C /* Progress.swift in Sources */,
 				4195EAE320B4A4C500841D44 /* FoodService.swift in Sources */,
 				4195EADB20B4940200841D44 /* FoodIDService.swift in Sources */,
 				418A4F7020AB4F7000D8E4A6 /* AppDelegate.swift in Sources */,

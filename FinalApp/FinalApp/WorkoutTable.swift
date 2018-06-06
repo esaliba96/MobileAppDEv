@@ -49,7 +49,6 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     
     func setRetrieveCallback() {
-        print(currentDate!)
         workoutRef?.child(currentDate!).observe(.value, with:
             { snapshot in
                 
@@ -57,7 +56,6 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 for item in snapshot.children {
                     newWorkouts.append(Workout(snapshot: item as! DataSnapshot))
-                    print(item)
                 }
                 
                 self.myWorkouts = newWorkouts

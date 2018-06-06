@@ -171,8 +171,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-Ih-xXs" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="43" y="420" width="287" height="170"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIa-fa-89g">
+                                <rect key="frame" x="136" y="64" width="103" height="30"/>
+                                <state key="normal" title="Show Progress"/>
+                                <connections>
+                                    <action selector="showProgress:" destination="DOe-7w-vFt" eventType="touchUpInside" id="ekV-L7-AUi"/>
+                                    <segue destination="1KH-En-K2k" kind="push" identifier="progress" id="GUL-ZZ-2Fc"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G1a-WE-eYi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="326"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Food" rowHeight="100" id="IJJ-4q-Hwr" customClass="FoodTVCell" customModule="FinalApp" customModuleProvider="target">
@@ -265,27 +277,25 @@
                                     <outlet property="delegate" destination="DOe-7w-vFt" id="9FQ-Rj-UbB"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yvd-NE-Yhq" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="27" y="415" width="321" height="175"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="228" id="GSI-hl-RRZ"/>
-                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="Yvd-NE-Yhq" secondAttribute="bottom" constant="28" id="IID-4C-wlH"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="Czy-Ih-xXs" secondAttribute="trailing" constant="45" id="4Xd-Xo-NJV"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="196" id="GSI-hl-RRZ"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="Czy-Ih-xXs" secondAttribute="bottom" constant="28" id="IXq-PS-x62"/>
                             <constraint firstAttribute="trailing" secondItem="G1a-WE-eYi" secondAttribute="trailing" id="LsZ-Er-jgo"/>
+                            <constraint firstItem="AIa-fa-89g" firstAttribute="centerX" secondItem="lA3-C3-18e" secondAttribute="centerX" id="P57-K4-UjP"/>
                             <constraint firstItem="G1a-WE-eYi" firstAttribute="leading" secondItem="lE0-Js-G00" secondAttribute="leading" id="RxX-3U-C84"/>
-                            <constraint firstItem="Yvd-NE-Yhq" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="27" id="ZR4-Wi-arw"/>
-                            <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" id="gcE-z5-W1b"/>
-                            <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="Yvd-NE-Yhq" secondAttribute="trailing" constant="27" id="hB1-2m-8kW"/>
-                            <constraint firstItem="Yvd-NE-Yhq" firstAttribute="top" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="25" id="jAY-Xd-zQj"/>
+                            <constraint firstItem="AIa-fa-89g" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" id="YbY-pA-H4D"/>
+                            <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" constant="32" id="gcE-z5-W1b"/>
+                            <constraint firstItem="Czy-Ih-xXs" firstAttribute="top" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="-2" id="lUa-yR-pOa"/>
+                            <constraint firstItem="Czy-Ih-xXs" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="43" id="ych-hJ-tN4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lA3-C3-18e"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Foods" id="7iJ-47-u0a"/>
                     <connections>
-                        <outlet property="chart" destination="Yvd-NE-Yhq" id="q4n-UU-ZxD"/>
+                        <outlet property="chart" destination="Czy-Ih-xXs" id="5U7-Cl-9Vw"/>
                         <outlet property="item2" destination="7iJ-47-u0a" id="4hH-6j-Fzc"/>
                         <outlet property="tableView" destination="G1a-WE-eYi" id="34i-yn-Pqt"/>
                         <segue destination="ner-qi-tOC" kind="presentation" identifier="addFood" id="5eh-0G-hgk"/>
@@ -623,6 +633,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWk-PP-CYK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3957.5999999999999" y="1211.2443778110946"/>
+        </scene>
+        <!--Progress-->
+        <scene sceneID="XTZ-I7-KJr">
+            <objects>
+                <viewController id="1KH-En-K2k" customClass="Progress" customModule="FinalApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rCX-cO-v2a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2P9-qt-5dg" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2P9-qt-5dg" firstAttribute="centerX" secondItem="rCX-cO-v2a" secondAttribute="centerX" id="6p9-nW-0NW"/>
+                            <constraint firstItem="2P9-qt-5dg" firstAttribute="top" secondItem="aX8-8k-Blg" secondAttribute="top" id="anz-VD-kGa"/>
+                            <constraint firstAttribute="bottom" secondItem="2P9-qt-5dg" secondAttribute="bottom" id="efh-pd-eKs"/>
+                            <constraint firstItem="2P9-qt-5dg" firstAttribute="leading" secondItem="aX8-8k-Blg" secondAttribute="leading" id="jGR-oe-adG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aX8-8k-Blg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fs4-0g-NdY"/>
+                    <connections>
+                        <outlet property="chart" destination="2P9-qt-5dg" id="jaK-Zx-Qfw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ubg-ZA-3HE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4740" y="130.88455772113943"/>
         </scene>
         <!--Workout-->
         <scene sceneID="zKL-eL-iFB">

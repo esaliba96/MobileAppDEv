@@ -54,6 +54,8 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    @IBAction func showProgress(_ sender: UIButton) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,14 +76,19 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.totalCal += toBeAdded.calories
                     let months = ["consumed", "allowed"]
                     let total = 5000.0
-                    print(self.totalCal)
                     let percentages = [self.totalCal/total, (total-self.totalCal)/total]
                     self.setChart(dataPoints: months, values: percentages)
                 }
-                
+                if newFoods.count == 0 {
+                    self.chart.isHidden = true
+                } else {
+                    self.chart.isHidden = false
+                }
+
                 self.foods = newFoods
                 self.tableView.reloadData()
         })
+        
 
     }
 
@@ -98,7 +105,12 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 (segue.destination as! FoodDetail).this = foods[(indexPath as NSIndexPath).row]
             }
         }
+        
+        if segue.identifier == "progress" {
+            (segue.destination as! Progress).currentDate = self.currentDate
+        }
     }
+    
     
     @IBAction func unwindFromCancel(segue:UIStoryboardSegue){}
     
