@@ -23,14 +23,13 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
     var workoutRef : DatabaseReference?
     var currentDate : String?
        
-    @IBOutlet weak var item1: UITabBarItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutRef = Database.database().reference(withPath: "workouts")
         tableView.delegate = self
         tableView.dataSource = self
-        item1.image = UIImage(named: "art.png")?.withRenderingMode(.alwaysOriginal)
-        
+        self.tabBarController?.tabBar.items![0].image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
+        self.tabBarController?.tabBar.items![1].image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
         setRetrieveCallback()
         
     }

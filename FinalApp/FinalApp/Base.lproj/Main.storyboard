@@ -784,7 +784,6 @@
                         <color key="badgeColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="item1" destination="ihp-RF-GXa" id="lDs-1b-0rr"/>
                         <outlet property="tableView" destination="556-2k-fwn" id="ota-JM-0Sj"/>
                         <segue destination="7Ee-Tx-zC8" kind="presentation" identifier="addWorkout" id="ZyH-Eq-e1k"/>
                     </connections>
