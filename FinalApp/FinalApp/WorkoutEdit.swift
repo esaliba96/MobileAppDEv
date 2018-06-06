@@ -7,23 +7,29 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class WorkoutEditVC: UIViewController, UITextFieldDelegate {
+class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+    
     var dataFromTable : Workout?
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var setsTF: UITextField!
     @IBOutlet weak var repsTF: UITextField!
     @IBOutlet weak var restTF: UITextField!
+    var workoutNames = [String]()
+    @IBOutlet weak var pickerworkout: UIPickerView!
+    var workoutRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        workoutRef = Database.database().reference(withPath: "workouts")
         if dataFromTable != nil {
             nameTF.text = dataFromTable?.name
             repsTF.text = dataFromTable?.reps
             setsTF.text = dataFromTable?.sets
             restTF.text = dataFromTable?.maxWeight
         }
+        getWorkoutNames()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,6 +68,42 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate {
                 destVC?.addWorkout(newWorkout: newWorkout)
             }
         }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return workoutNames.count;
+    }
+    
+    func getWorkoutNames() {
+        workoutRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let key = snap.key
+                self.workoutRef?.child(key).observe(.value, with:
+                    { snapshot in
+                        
+                        var newWorkouts = [Workout]()
+                        
+                        for item in snapshot.children {
+                            newWorkouts.append(Workout(snapshot: item as! DataSnapshot))
+                             self.workoutNames.append(Workout(snapshot: item as! DataSnapshot).name)
+                            self.pickerworkout.reloadAllComponents()
+                        }
+                })
+            }
+        })
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return workoutNames[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        nameTF.text = workoutNames[pickerworkout.selectedRow(inComponent: 0)]
     }
     
 }

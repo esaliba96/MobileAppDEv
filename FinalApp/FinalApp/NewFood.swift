@@ -125,7 +125,6 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        print(foodNames[row])
         return foodNames[row]
     }
     

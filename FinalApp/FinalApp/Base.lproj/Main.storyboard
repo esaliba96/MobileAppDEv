@@ -818,7 +818,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbX-pB-5QL">
-                                <rect key="frame" x="44" y="106" width="45" height="21"/>
+                                <rect key="frame" x="16" y="106" width="45" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -842,7 +842,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-XW-8Oa">
-                                <rect key="frame" x="147" y="101" width="183" height="30"/>
+                                <rect key="frame" x="69" y="102" width="108" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -877,31 +877,44 @@
                                     <outlet property="delegate" destination="7Ee-Tx-zC8" id="h7k-WN-3xc"/>
                                 </connections>
                             </textField>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbU-1h-byq">
+                                <rect key="frame" x="185" y="35" width="174" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="mGX-Uu-kva"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Ee-Tx-zC8" id="5tm-zU-Qxt"/>
+                                    <outlet property="delegate" destination="7Ee-Tx-zC8" id="e9K-R8-xXP"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="top" secondItem="Tmw-Nf-dW7" secondAttribute="top" constant="81" id="06M-Wc-Rba"/>
+                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="top" secondItem="Tmw-Nf-dW7" secondAttribute="top" constant="82" id="06M-Wc-Rba"/>
                             <constraint firstItem="vtp-OR-deN" firstAttribute="baseline" secondItem="7EA-so-Ylc" secondAttribute="baseline" id="45g-z6-Rhw"/>
-                            <constraint firstItem="1Qz-d8-U2v" firstAttribute="leading" secondItem="rbX-pB-5QL" secondAttribute="leading" id="6uV-sC-wq0"/>
+                            <constraint firstItem="1Qz-d8-U2v" firstAttribute="leading" secondItem="rbX-pB-5QL" secondAttribute="leading" constant="28" id="6uV-sC-wq0"/>
                             <constraint firstItem="5z4-92-X2y" firstAttribute="leading" secondItem="uOI-y5-I5A" secondAttribute="leading" id="BYM-O4-btw"/>
                             <constraint firstItem="uOI-y5-I5A" firstAttribute="leading" secondItem="1Qz-d8-U2v" secondAttribute="leading" id="CfB-Xt-pHS"/>
                             <constraint firstItem="obV-hb-HoN" firstAttribute="trailing" secondItem="i8v-lY-aou" secondAttribute="trailing" id="Gqo-hF-49m"/>
                             <constraint firstItem="uOI-y5-I5A" firstAttribute="top" secondItem="1Qz-d8-U2v" secondAttribute="bottom" constant="69" id="Hcd-Db-cHe"/>
-                            <constraint firstItem="obV-hb-HoN" firstAttribute="leading" secondItem="mIT-XW-8Oa" secondAttribute="leading" id="J4u-PO-Odo"/>
-                            <constraint firstItem="rbX-pB-5QL" firstAttribute="leading" secondItem="Tmw-Nf-dW7" secondAttribute="leading" constant="44" id="MKo-P8-1RZ"/>
+                            <constraint firstItem="obV-hb-HoN" firstAttribute="leading" secondItem="mIT-XW-8Oa" secondAttribute="leading" constant="78" id="J4u-PO-Odo"/>
+                            <constraint firstItem="rbX-pB-5QL" firstAttribute="leading" secondItem="Tmw-Nf-dW7" secondAttribute="leading" constant="16" id="MKo-P8-1RZ"/>
                             <constraint firstItem="i8v-lY-aou" firstAttribute="top" secondItem="obV-hb-HoN" secondAttribute="bottom" constant="60" id="Nbo-8n-BYr"/>
                             <constraint firstItem="vtp-OR-deN" firstAttribute="top" secondItem="5z4-92-X2y" secondAttribute="bottom" constant="149" id="VJU-JS-cL5"/>
-                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="trailing" secondItem="obV-hb-HoN" secondAttribute="trailing" id="Wcd-CA-9ES"/>
+                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="trailing" secondItem="obV-hb-HoN" secondAttribute="trailing" constant="-153" id="Wcd-CA-9ES"/>
                             <constraint firstItem="Tmw-Nf-dW7" firstAttribute="trailing" secondItem="7EA-so-Ylc" secondAttribute="trailing" constant="91" id="Y16-gM-RT0"/>
                             <constraint firstItem="7EA-so-Ylc" firstAttribute="top" secondItem="KhJ-qb-Ssa" secondAttribute="bottom" constant="145" id="YkU-GG-wQ6"/>
-                            <constraint firstItem="Tmw-Nf-dW7" firstAttribute="trailing" secondItem="mIT-XW-8Oa" secondAttribute="trailing" constant="45" id="cgY-ap-Nkd"/>
+                            <constraint firstItem="Tmw-Nf-dW7" firstAttribute="trailing" secondItem="mIT-XW-8Oa" secondAttribute="trailing" constant="198" id="cgY-ap-Nkd"/>
                             <constraint firstItem="i8v-lY-aou" firstAttribute="trailing" secondItem="KhJ-qb-Ssa" secondAttribute="trailing" id="fGV-2Q-Qvz"/>
                             <constraint firstItem="KhJ-qb-Ssa" firstAttribute="top" secondItem="i8v-lY-aou" secondAttribute="bottom" constant="55" id="hQs-uq-Ph3"/>
+                            <constraint firstItem="nbU-1h-byq" firstAttribute="centerY" secondItem="rbX-pB-5QL" secondAttribute="centerY" id="kcv-bN-V1H"/>
+                            <constraint firstItem="nbU-1h-byq" firstAttribute="trailing" secondItem="zYO-Z8-7GO" secondAttribute="trailingMargin" id="mna-Vq-I6b"/>
                             <constraint firstItem="i8v-lY-aou" firstAttribute="leading" secondItem="obV-hb-HoN" secondAttribute="leading" id="nTE-X5-vI6"/>
-                            <constraint firstItem="obV-hb-HoN" firstAttribute="top" secondItem="mIT-XW-8Oa" secondAttribute="bottom" constant="54" id="r8A-LU-MTW"/>
+                            <constraint firstItem="obV-hb-HoN" firstAttribute="top" secondItem="mIT-XW-8Oa" secondAttribute="bottom" constant="53" id="r8A-LU-MTW"/>
                             <constraint firstItem="vtp-OR-deN" firstAttribute="leading" secondItem="Tmw-Nf-dW7" secondAttribute="leading" constant="53" id="rwq-Tr-swL"/>
                             <constraint firstItem="5z4-92-X2y" firstAttribute="top" secondItem="uOI-y5-I5A" secondAttribute="bottom" constant="64" id="rzn-FJ-gFe"/>
-                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="leading" secondItem="rbX-pB-5QL" secondAttribute="trailing" constant="58" id="v8l-CA-cMU"/>
+                            <constraint firstItem="nbU-1h-byq" firstAttribute="leading" secondItem="mIT-XW-8Oa" secondAttribute="trailing" constant="8" symbolic="YES" id="uKk-AL-bVk"/>
+                            <constraint firstItem="mIT-XW-8Oa" firstAttribute="leading" secondItem="rbX-pB-5QL" secondAttribute="trailing" constant="8" id="v8l-CA-cMU"/>
                             <constraint firstItem="KhJ-qb-Ssa" firstAttribute="leading" secondItem="i8v-lY-aou" secondAttribute="leading" id="w27-e4-vak"/>
                             <constraint firstItem="1Qz-d8-U2v" firstAttribute="top" secondItem="rbX-pB-5QL" secondAttribute="bottom" constant="63" id="xn1-we-ALA"/>
                         </constraints>
@@ -910,6 +923,7 @@
                     <navigationItem key="navigationItem" id="wpB-H2-S6S"/>
                     <connections>
                         <outlet property="nameTF" destination="mIT-XW-8Oa" id="fLj-2A-uSd"/>
+                        <outlet property="pickerworkout" destination="nbU-1h-byq" id="MgO-gU-nKs"/>
                         <outlet property="repsTF" destination="i8v-lY-aou" id="AaX-vA-L12"/>
                         <outlet property="restTF" destination="KhJ-qb-Ssa" id="H2q-yy-f3M"/>
                         <outlet property="setsTF" destination="obV-hb-HoN" id="UrH-3F-U8y"/>
@@ -918,7 +932,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADU-C1-1D2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Y73-ae-E31" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4042" y="-284"/>
+            <point key="canvasLocation" x="4040.8000000000002" y="-284.70764617691157"/>
         </scene>
         <!--Test-->
         <scene sceneID="f3v-6h-PnA">
