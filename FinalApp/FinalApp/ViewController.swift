@@ -22,17 +22,21 @@ class ViewController: UIViewController {
     var dates =  [String]()
     @IBOutlet weak var item1: UITabBarItem!
     @IBOutlet weak var item2: UITabBarItem!
-    var user : String?
+    var user = ""
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Database.database().isPersistenceEnabled = true
+
         // Do any additional setup after loading the view, typically from a nib.
 //        Database.database().isPersistenceEnabled = true
         
         calendarView.visibleDates { (visibleDate) in
             self.setupViewsOfCalendar(from: visibleDate)
         }
+        
+        user = UserDefaults.standard.string(forKey: "username")!
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +69,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwindFromRegister(segue:UIStoryboardSegue) {
+        user = UserDefaults.standard.string(forKey: "username")!
     }
 }
 
@@ -75,8 +80,8 @@ extension ViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from: "2017 04 11")!
-        let endDate = formatter.date(from: "2017 06 01")!
+        let startDate = formatter.date(from: "2018 06 01")!
+        let endDate = formatter.date(from: "2018 12 31")!
         
         let paramaters = ConfigurationParameters(startDate: startDate, endDate : endDate)
         return paramaters
@@ -112,11 +117,8 @@ extension ViewController: JTAppleCalendarViewDelegate {
             if let tabbarController = segue.destination as? UITabBarController {
                 let postVC = tabbarController.viewControllers?.first as? WorkoutTable
                   postVC?.currentDate = dates[(cell as NSIndexPath).row]
-                  postVC?.user = self.user!
                 let foodVC = tabbarController.viewControllers![1] as? FoodTable
                     foodVC?.currentDate = dates[(cell as NSIndexPath).row]
-                    foodVC?.user = self.user!
-
             }
         }
     }

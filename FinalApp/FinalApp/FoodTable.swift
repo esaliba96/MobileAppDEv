@@ -19,13 +19,20 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var item2: UITabBarItem!
     var user : String?
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var consumed: UILabel!
     
+    @IBOutlet weak var allowed: UILabel!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.navigationItem.title = currentDate
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.tabBarController?.navigationItem.rightBarButtonItem = addButton
         self.tabBarController?.tabBar.barTintColor = UIColor.white
+        label.isHidden = true
+        allowed.isHidden = true
+        consumed.isHidden = true
+        chart.noDataText = ""
     }
     
     @objc func insertNewObject(_ sender: AnyObject) {
@@ -59,6 +66,7 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        user = UserDefaults.standard.string(forKey: "username")!
         foodRef = Database.database().reference(withPath: "food" + "-" + user!)
         item2.image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
         setRetrieveCallback()
@@ -69,20 +77,32 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
             { snapshot in
                 
                 var newFoods = [Food]()
+                var total = 2000.0
+                let months = ["consumed", "allowed"]
+
+                if (UserDefaults.standard.string(forKey: "cals") != nil) {
+                    total = UserDefaults.standard.double(forKey: "cals")
+                }
                 
                 for item in snapshot.children {
                     let toBeAdded = Food(snapshot: item as! DataSnapshot)
                     newFoods.append(toBeAdded)
                     self.totalCal += toBeAdded.calories
-                    let months = ["consumed", "allowed"]
-                    let total = 5000.0
-                    let percentages = [self.totalCal/total, (total-self.totalCal)/total]
-                    self.setChart(dataPoints: months, values: percentages)
                 }
-                if newFoods.count == 0 {
+                
+                if (self.totalCal > total) {
+                    print("here")
                     self.chart.isHidden = true
+                    self.chart.isOpaque = true
+                    self.chart.noDataText = ""
+                    self.label.isHidden = false
+                    self.allowed.isHidden = false
+                    self.allowed.text = "Allowed: " + String(total)
+                    self.consumed.isHidden = false
+                    self.consumed.text = "Consumed: " + String(self.totalCal)
                 } else {
-                    self.chart.isHidden = false
+                    let percentages = [self.totalCal, total-self.totalCal]
+                    self.setChart(dataPoints: months, values: percentages)
                 }
 
                 self.foods = newFoods
@@ -137,6 +157,9 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .fade)
             let newRef = foodRef?.child(currentDate!).child(String(foodToDelete.name.prefix(10)))
             newRef?.removeValue()
+            totalCal = 0
+            chart.reloadInputViews()
+            //setRetrieveCallback()
         }
     }
     

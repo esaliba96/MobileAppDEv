@@ -20,10 +20,12 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
     @IBOutlet weak var pickerworkout: UIPickerView!
     var workoutRef : DatabaseReference?
     var newWorkouts = [Workout]()
-
+    var user : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        workoutRef = Database.database().reference(withPath: "workouts")
+        user = UserDefaults.standard.string(forKey: "username")!
+        workoutRef = Database.database().reference(withPath: "workouts-" + user!)
         if dataFromTable != nil {
             nameTF.text = dataFromTable?.name
             repsTF.text = dataFromTable?.reps

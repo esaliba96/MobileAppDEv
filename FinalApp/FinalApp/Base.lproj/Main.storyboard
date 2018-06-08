@@ -38,22 +38,32 @@
                                     <constraint firstAttribute="height" constant="303" id="KAm-h2-9ws"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number of calories per day" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aX7-cZ-8Dz">
+                                <rect key="frame" x="78" y="519" width="220" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Nz9-tc-MT7" firstAttribute="leading" secondItem="KnM-j9-14B" secondAttribute="leading" constant="78" id="5JS-sP-DMv"/>
                             <constraint firstItem="0su-L0-Yiq" firstAttribute="top" secondItem="Sdk-ct-zmQ" secondAttribute="bottom" constant="73" id="Hyd-8f-K4h"/>
                             <constraint firstItem="Nz9-tc-MT7" firstAttribute="top" secondItem="KnM-j9-14B" secondAttribute="top" constant="53" id="P73-zO-ZeE"/>
+                            <constraint firstItem="0su-L0-Yiq" firstAttribute="top" secondItem="aX7-cZ-8Dz" secondAttribute="bottom" constant="21" id="WQp-Qm-Rjl"/>
+                            <constraint firstItem="aX7-cZ-8Dz" firstAttribute="trailing" secondItem="Sdk-ct-zmQ" secondAttribute="trailing" id="WUI-5T-dcj"/>
                             <constraint firstItem="Nz9-tc-MT7" firstAttribute="centerX" secondItem="KnM-j9-14B" secondAttribute="centerX" id="bnt-Lv-qFS"/>
                             <constraint firstItem="Sdk-ct-zmQ" firstAttribute="centerX" secondItem="Nz9-tc-MT7" secondAttribute="centerX" id="eyS-mT-arO"/>
                             <constraint firstItem="KnM-j9-14B" firstAttribute="bottom" secondItem="Sdk-ct-zmQ" secondAttribute="bottom" constant="170" id="gR3-8a-3DV"/>
                             <constraint firstItem="Sdk-ct-zmQ" firstAttribute="leading" secondItem="KnM-j9-14B" secondAttribute="leading" constant="77" id="gpo-jb-swT"/>
                             <constraint firstItem="0su-L0-Yiq" firstAttribute="centerX" secondItem="Sdk-ct-zmQ" secondAttribute="centerX" id="nq5-9T-hcu"/>
+                            <constraint firstItem="aX7-cZ-8Dz" firstAttribute="leading" secondItem="Nz9-tc-MT7" secondAttribute="leading" id="ou2-Cx-eRz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KnM-j9-14B"/>
                     </view>
                     <navigationItem key="navigationItem" id="IKe-gr-XPr"/>
                     <connections>
+                        <outlet property="cals" destination="aX7-cZ-8Dz" id="gMh-M8-HJ1"/>
                         <outlet property="image" destination="Nz9-tc-MT7" id="jtq-un-acg"/>
                         <outlet property="user" destination="Sdk-ct-zmQ" id="S60-7P-N8G"/>
                     </connections>
@@ -236,7 +246,30 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Czy-Ih-xXs" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="43" y="420" width="287" height="170"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exceeded amout of calories allowed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNT-tN-0dK">
+                                        <rect key="frame" x="6" y="52" width="274" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACh-rb-PWI">
+                                        <rect key="frame" x="84" y="114" width="83" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allowed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvN-da-3M2">
+                                        <rect key="frame" x="84" y="81" width="150" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ACh-rb-PWI" firstAttribute="top" secondItem="XvN-da-3M2" secondAttribute="bottom" constant="12" id="mdQ-rf-bfO"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIa-fa-89g">
                                 <rect key="frame" x="136" y="64" width="103" height="30"/>
@@ -346,20 +379,32 @@
                             <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="Czy-Ih-xXs" secondAttribute="trailing" constant="45" id="4Xd-Xo-NJV"/>
                             <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="196" id="GSI-hl-RRZ"/>
                             <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="Czy-Ih-xXs" secondAttribute="bottom" constant="28" id="IXq-PS-x62"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="ACh-rb-PWI" secondAttribute="trailing" constant="165" id="Jl2-ek-DdB"/>
                             <constraint firstAttribute="trailing" secondItem="G1a-WE-eYi" secondAttribute="trailing" id="LsZ-Er-jgo"/>
+                            <constraint firstItem="XvN-da-3M2" firstAttribute="top" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="79" id="Mup-Jn-qGh"/>
+                            <constraint firstItem="LNT-tN-0dK" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="49" id="ND6-WV-sgK"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="bottom" secondItem="ACh-rb-PWI" secondAttribute="bottom" constant="63" id="ODR-KN-VDM"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="LNT-tN-0dK" secondAttribute="trailing" constant="52" id="ORg-gF-DYV"/>
                             <constraint firstItem="AIa-fa-89g" firstAttribute="centerX" secondItem="lA3-C3-18e" secondAttribute="centerX" id="P57-K4-UjP"/>
                             <constraint firstItem="G1a-WE-eYi" firstAttribute="leading" secondItem="lE0-Js-G00" secondAttribute="leading" id="RxX-3U-C84"/>
                             <constraint firstItem="AIa-fa-89g" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" id="YbY-pA-H4D"/>
+                            <constraint firstItem="ACh-rb-PWI" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="127" id="eaJ-rN-iJJ"/>
                             <constraint firstItem="G1a-WE-eYi" firstAttribute="top" secondItem="lA3-C3-18e" secondAttribute="top" constant="32" id="gcE-z5-W1b"/>
+                            <constraint firstItem="XvN-da-3M2" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="127" id="hWJ-5r-jBF"/>
                             <constraint firstItem="Czy-Ih-xXs" firstAttribute="top" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="-2" id="lUa-yR-pOa"/>
+                            <constraint firstItem="LNT-tN-0dK" firstAttribute="top" secondItem="G1a-WE-eYi" secondAttribute="bottom" constant="50" id="w19-eq-hQe"/>
                             <constraint firstItem="Czy-Ih-xXs" firstAttribute="leading" secondItem="lA3-C3-18e" secondAttribute="leading" constant="43" id="ych-hJ-tN4"/>
+                            <constraint firstItem="lA3-C3-18e" firstAttribute="trailing" secondItem="XvN-da-3M2" secondAttribute="trailing" constant="98" id="zrg-Xo-Ou6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lA3-C3-18e"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Foods" id="7iJ-47-u0a"/>
                     <connections>
+                        <outlet property="allowed" destination="XvN-da-3M2" id="oV1-96-JaP"/>
                         <outlet property="chart" destination="Czy-Ih-xXs" id="5U7-Cl-9Vw"/>
+                        <outlet property="consumed" destination="ACh-rb-PWI" id="LtR-Df-NUQ"/>
                         <outlet property="item2" destination="7iJ-47-u0a" id="4hH-6j-Fzc"/>
+                        <outlet property="label" destination="LNT-tN-0dK" id="ivj-g6-1Ch"/>
                         <outlet property="tableView" destination="G1a-WE-eYi" id="34i-yn-Pqt"/>
                         <segue destination="ner-qi-tOC" kind="presentation" identifier="addFood" id="5eh-0G-hgk"/>
                     </connections>
@@ -678,6 +723,7 @@
                             <constraint firstItem="29G-1a-xH7" firstAttribute="bottom" secondItem="e4k-AC-I6Y" secondAttribute="bottom" constant="73" id="jZX-Gs-41S"/>
                             <constraint firstItem="tKs-h6-md4" firstAttribute="leading" secondItem="OIp-zb-6ZJ" secondAttribute="trailing" constant="86" id="m0W-AM-SeW"/>
                             <constraint firstItem="OIp-zb-6ZJ" firstAttribute="leading" secondItem="29G-1a-xH7" secondAttribute="leading" constant="41" id="uPn-x9-qzM"/>
+                            <constraint firstItem="e4k-AC-I6Y" firstAttribute="centerX" secondItem="29G-1a-xH7" secondAttribute="centerX" id="uU5-39-pJc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="29G-1a-xH7"/>
                     </view>

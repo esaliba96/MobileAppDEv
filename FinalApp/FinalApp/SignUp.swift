@@ -12,12 +12,11 @@ import FirebaseDatabase
 class SignUp: UIViewController {
     
     @IBOutlet weak var user: UITextField!
+    @IBOutlet weak var cals: UITextField!
     @IBOutlet weak var image: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Database.database().isPersistenceEnabled = true
-        
         image.image = UIImage(named: "tough.png")
     }
     
@@ -26,7 +25,11 @@ class SignUp: UIViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "register" {
-            (segue.destination as? ViewController)?.user = user.text
+            (segue.destination as? ViewController)?.user = user.text!
+            
+            let defaults = UserDefaults.standard
+            defaults.set(user.text, forKey: "username")
+            defaults.set(Double(cals.text!), forKey: "cals")
         }
     }
 }

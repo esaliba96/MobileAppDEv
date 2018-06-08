@@ -31,7 +31,7 @@ class FoodDetail: UIViewController {
         
         let months = ["carb", "protein","Fat"]
         let total = this.carbs*4 + this.protein*4 + this.totalFat*9
-        let percentages = [(this.carbs*4)/total, (this.protein*4)/total, (this.totalFat*9)/total]
+        let percentages = [(this.carbs*4*100)/total, (this.protein*4*100)/total, (this.totalFat*9*100)/total]
         self.setChart(dataPoints: months, values: percentages)
     }
     

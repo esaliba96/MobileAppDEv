@@ -42,7 +42,9 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     @IBAction func search(_ sender: UIButton) {
         let session = URLSession(configuration: URLSessionConfiguration.default)
-        let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + searchInput.text! + "?results=0%3A6&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
+        let newText = searchInput.text!.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let apiFoodID = "https://api.nutritionix.com/v1_1/search/" + newText! + "?results=0%3A6&cal_min=0&cal_max=5000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=1385c4d5&appKey=0524b7bc56759c31ff6b3c25b0835897"
+        
         
         let request = URLRequest(url: URL(string: apiFoodID)!)
         
@@ -104,6 +106,25 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         for i in 0...5 {
             getFoodName(nbr: i)
         }
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        if identifier == "unwindFromAdd" {
+            if (foodToBeAdded == nil) {
+                let alertController = UIAlertController(
+                    title: "Alert",
+                    message: "Food was not added in order to be saved",
+                    preferredStyle: .alert
+                )
+                alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                present(alertController, animated: true, completion: nil)
+                return false
+            }
+        }
+        
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

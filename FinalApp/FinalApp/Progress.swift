@@ -17,9 +17,11 @@ class Progress: UIViewController {
     var dates = [String]()
     var cals = [Double]()
     var totalCal = Double()
-    
+    var user : String!
     override func viewDidLoad() {
-        foodRef = Database.database().reference(withPath: "food")
+        user = UserDefaults.standard.string(forKey: "username")!
+        print(user)
+        foodRef = Database.database().reference(withPath: "food-" + user)
         generateDates()
         getCals()
     }
@@ -64,7 +66,12 @@ class Progress: UIViewController {
         let day = Int(today.suffix(2))!
         
         for i in 1...day {
-            dates.append("2017-04-" + String(i))
+            if ( i > 0 && i < 10) {
+                dates.append(today.prefix(8) + "0" + String(i))
+            } else {
+                dates.append(today.prefix(8) + String(i))
+            }
         }
+        print(dates)
     }
 }
