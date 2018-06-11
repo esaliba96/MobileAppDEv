@@ -36,7 +36,11 @@ class ViewController: UIViewController {
             self.setupViewsOfCalendar(from: visibleDate)
         }
         
-        user = UserDefaults.standard.string(forKey: "username")!
+        if let temp = UserDefaults.standard.string(forKey: "username") {
+            user = temp
+        } else{
+            user = ""
+        }
     }
 
     override func didReceiveMemoryWarning() {

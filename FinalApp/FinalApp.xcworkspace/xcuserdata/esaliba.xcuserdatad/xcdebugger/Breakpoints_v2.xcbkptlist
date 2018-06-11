@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/FoodTable.swift"
-            timestampString = "550185484.9562351"
+            timestampString = "550428659.535414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/FoodTable.swift"
-            timestampString = "550185484.9565589"
+            timestampString = "550428659.535465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "FoodTable"
-            landmarkType = "3">
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FinalApp/FoodDetail.swift"
-            timestampString = "550185484.956786"
+            timestampString = "550016546.299843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"

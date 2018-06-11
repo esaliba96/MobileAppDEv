@@ -26,7 +26,11 @@ class WorkoutTable: UIViewController, UITableViewDelegate, UITableViewDataSource
        
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = UserDefaults.standard.string(forKey: "username")!
+        if let temp = UserDefaults.standard.string(forKey: "username") {
+            user = temp
+        } else{
+            user = ""
+        }
         workoutRef = Database.database().reference(withPath: "workouts" + "-" + user!)
         tableView.delegate = self
         tableView.dataSource = self

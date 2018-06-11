@@ -17,10 +17,10 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var chart : PieChartView!
     var totalCal = Double()
     @IBOutlet weak var item2: UITabBarItem!
-    var user : String?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var consumed: UILabel!
+    var user : String?
     
     @IBOutlet weak var allowed: UILabel!
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +66,11 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = UserDefaults.standard.string(forKey: "username")!
+        if let temp = UserDefaults.standard.string(forKey: "username") {
+            user = temp
+        } else{
+            user = ""
+        }
         foodRef = Database.database().reference(withPath: "food" + "-" + user!)
         item2.image = UIImage(named: "food.png")?.withRenderingMode(.alwaysOriginal)
         setRetrieveCallback()
