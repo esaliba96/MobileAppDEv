@@ -41,6 +41,7 @@ class WorkoutEditVC: UIViewController, UITextFieldDelegate, UIPickerViewDataSour
         if textField == restTF {
             textField.resignFirstResponder()
         }
+          self.view.endEditing(true)
         return true
     }
     

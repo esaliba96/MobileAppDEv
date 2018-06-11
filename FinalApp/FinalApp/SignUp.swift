@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class SignUp: UIViewController {
+class SignUp: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var user: UITextField!
     @IBOutlet weak var cals: UITextField!
@@ -31,5 +31,10 @@ class SignUp: UIViewController {
             defaults.set(user.text, forKey: "username")
             defaults.set(Double(cals.text!), forKey: "cals")
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

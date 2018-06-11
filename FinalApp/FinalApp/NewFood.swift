@@ -163,4 +163,8 @@ class NewFood: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         calText.text  = String(newFood.calories)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }

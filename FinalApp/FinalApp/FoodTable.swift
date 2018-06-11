@@ -108,7 +108,10 @@ class FoodTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     let percentages = [self.totalCal, total-self.totalCal]
                     self.setChart(dataPoints: months, values: percentages)
                 }
-
+                
+                if (newFoods.count == 0) {
+                    self.chart.isHidden = true
+                }
                 self.foods = newFoods
                 self.tableView.reloadData()
         })
